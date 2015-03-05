@@ -1,2 +1,4 @@
 language: c
-script: ./run
+script:
+	- chmod 777 run 
+	- ./run
