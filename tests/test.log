@@ -1,0 +1,38 @@
+Running suite MagicSquare
+check_magic_square.c:32:P:Core:test_one:0: Passed
+check_magic_square.c:36:P:Core:test_magic_sum:0: Passed
+check_magic_square.c:44:P:Core:test_magic_check_square:0: Passed
+check_magic_square.c:55:P:Core:test_check_nonempty:0: Passed
+check_magic_square.c:65:P:Core:test_check_diag:0: Passed
+check_magic_square.c:79:P:Core:test_check_columns:0: Passed
+check_magic_square.c:93:P:Core:test_check_rows:0: Passed
+check_magic_square.c:97:P:Core:test_size5:0: Passed
+check_magic_square.c:127:P:Core:test_any_ms_size:0: Passed
+check_magic_square.c:405:P:Core:test_solve_the_ms_problem:0: Passed
+check_magic_square.c:171:P:Core:test_swap_in_directed:0: Passed
+check_magic_square.c:208:P:Core:test_update_in_direction:0: Passed
+check_magic_square.c:288:P:Core:test_is_mobile:0: Passed
+check_magic_square.c:349:P:Core:test_dms_on_extreme:0: Passed
+check_magic_square.c:368:P:Core:test_complete_4:0: Passed
+Results for all suites run:
+100%: Checks: 15, Failures: 0, Errors: 0
+
+
+[Status: 0/111307002] - [solutions/possibilities]
+check_magic_square.c:32:P:Core:test_one:0: Passed
+check_magic_square.c:36:P:Core:test_magic_sum:0: Passed
+check_magic_square.c:39:P:Core:test_magic_check_square:0: Passed
+check_magic_square.c:48:P:Core:test_check_nonempty:0: Passed
+check_magic_square.c:59:P:Core:test_check_diag:0: Passed
+check_magic_square.c:69:P:Core:test_check_columns:0: Passed
+check_magic_square.c:83:P:Core:test_check_rows:0: Passed
+check_magic_square.c:97:P:Core:test_size5:0: Passed
+check_magic_square.c:127:P:Core:test_any_ms_size:0: Passed
+check_magic_square.c:372:E:Core:test_solve_the_ms_problem:0: (after this point) Test timeout expired
+check_magic_square.c:134:P:Core:test_swap_in_directed:0: Passed
+check_magic_square.c:175:P:Core:test_update_in_direction:0: Passed
+check_magic_square.c:212:P:Core:test_is_mobile:0: Passed
+check_magic_square.c:292:P:Core:test_dms_on_extreme:0: Passed
+FAIL: check_magic_square
+Results for all suites run:
+92%: Checks: 14, Failures: 0, Errors: 1

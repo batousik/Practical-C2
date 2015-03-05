@@ -2,8 +2,7 @@
 #define TREENODE_H
 #include <stdio.h>
 
-typedef struct TreeNodeName
-{
+typedef struct TreeNodeName {
     void* value;
     struct TreeNodeName* left;
     struct TreeNodeName* right;
@@ -13,8 +12,7 @@ typedef int(*comp_fn)(void*, void*);
 typedef void(*clean_fn)(void*);
 typedef void(*print_fn)(void*);
 
-typedef struct
-{
+typedef struct {
   TreeNode* base;
   comp_fn comp;
   clean_fn clean;
