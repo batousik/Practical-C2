@@ -50,10 +50,10 @@ bool insert(TreeBase* tree, void* data){
 	TreeNode *current_node = tree->base;
 	// Empty tree condition
 	if (current_node == NULL){
-		current_node == new_node(data, NULL, NULL);
+		tree->base == new_node(data, NULL, NULL);
+		tree->size = tree->size + 1;
 		return true;
 	}
-	int done = 0;
 	while(true){
 		int res = tree->comp(data, current_node->value);
 		switch (res){
