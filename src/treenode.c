@@ -9,7 +9,7 @@ int comp_ints (void* p1, void* p2) {
 }
 
 void clean_int(){
-
+ 		
 }
 
 void print_int(){
@@ -23,8 +23,8 @@ int sum(int* a, int* b){
 }
 
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
-  TreeBase *temp = malloc (sizeof (TreeBase));
-  temp->base = malloc (sizeof (TreeNode));
+  TreeBase *temp = (*TreeBase) malloc (sizeof (TreeBase));
+  temp->base = (*TreeNode) malloc (sizeof (TreeNode));
   temp->comp = co;
   temp->clean = cl;
   temp->print = p;
