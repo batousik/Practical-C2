@@ -7,18 +7,6 @@ int main(){
 	tree_base->base->left = tree_base->base;
 	tree_base->base->right = tree_base->base;
 	
-	// int x,y;
-	// x = y = 5;
-	// int *px, *py;
-	// px = &x;
-	// py = &y;
-	
-	// printf("%p\n", px);
-
-	// int z = sum(px, py );
-
-	// z = comp((void*)px, (void*)py);
-
-	// printf("%d\n", z);
+	printTree(tree_base);
 	return 0;
 }

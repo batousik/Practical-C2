@@ -1,5 +1,4 @@
 #include "treenode.h"
-
 // It is used to order 
 // nodes of your tree. 
 // This comparison function 
@@ -32,11 +31,26 @@ TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
 }
 
 void printTree(TreeBase* tree){
-	// TreeBase* temp = tree;
-	// if (tree != NULL) {
-	//   temp
- //      printTree(temp->left);
- //      printf("%p", temp->value);
- //      printTree(temp->right);
- //   }
+	if (tree != NULL) {
+	  /* set current to root of binary tree */
+	  TreeNode *current_node = tree->base;
+	  NodeStack *stack = NULL;
+	  int done = 0;
+	 
+	  while (!done) {
+	    if(current !=  NULL) {
+	      push(&stack, current_node);                                               
+	      current_node = current_node->left;  
+	    } else {
+	      if (stack != NULL) {
+	        current_node = pop(&stack);
+	        tree->print(current_node->value);
+	 		current_node = current_node->right;
+	      }
+	      else
+	        done = 1;
+	    }
+	  } 
+   }
 }
+
