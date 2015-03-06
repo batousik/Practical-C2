@@ -43,20 +43,19 @@ void insert(TreeBase* tree, void* data){
 						current_node = current_node->left;
 					} else {
 						current_node->left = new_node(data);
-						done = 0;
+						done = 1;
 					}
 					break;
 				case 0:
 					// value exists!!!
-					done = 0;
+					done = 1;
 					break;
 				case 1:
-					if (current_node->right != NULL) {
-						done = 0;
+					if (current_node->right != NULL){
 						current_node = current_node->right;
 					} else {
 						current_node->right = new_node(data);
-						done = 0;
+						done = 1;
 					}
 					break;
 				default:
