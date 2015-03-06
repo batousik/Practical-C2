@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef int(*comp_fn)(void*, void*);
+typedef void(*clean_fn)(void*);
+typedef void(*print_fn)(void*);
+
 typedef struct TreeNodeName {
     void* value;
     struct TreeNodeName* left;
@@ -10,20 +14,16 @@ typedef struct TreeNodeName {
 } TreeNode;
 
 typedef struct {
-  TreeNode* base;
-  comp_fn comp;
-  clean_fn clean;
-  print_fn print;
+    TreeNode* base;
+    comp_fn comp;
+    clean_fn clean;
+    print_fn print;
 } TreeBase;
 
-struct NodeList {
-  TreeNode *tree_node;
-  struct NodeList *next;
+typedef struct NodeList {
+    TreeNode *tree_node;
+    struct NodeList *next;
 } StackNode;
-
-typedef int(*comp_fn)(void*, void*);
-typedef void(*clean_fn)(void*);
-typedef void(*print_fn)(void*);
 
 int comp_ints (void* p1, void* p2);
 void clean_int(void* p);

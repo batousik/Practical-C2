@@ -15,7 +15,7 @@ void push(StackNode **top_ref, TreeNode *tree_node) {
 TreeNode *pop(StackNode **top_ref) {
   TreeNode *tree_node;
   StackNode *top;
-  if(isEmpty(*top_ref)) {
+  if(*top_ref == NULL) {
      printf("Stack Underflow \n");
      getchar();
      exit(0);
