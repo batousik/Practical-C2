@@ -34,7 +34,7 @@ void insert(TreeBase* tree, void* data){
 	if (tree != NULL && data != NULL) {
 		/* set current to root of binary tree */
 		TreeNode *current_node = tree->base;
-		int done = 1;
+		int done = 0;
 		while(!done){
 			int res = tree->comp(data, current_node->value);
 			switch (res){
