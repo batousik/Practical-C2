@@ -38,16 +38,16 @@ START_TEST(test_INSERT) {
         int a,b;
         a = 5;
         b = 6;
-        if (ptr_tree_base_int_1 == null)
-            ck_abort_msg("tree_base was null");
-        if (ptr_tree_base_int_1->base != null)
-            ck_abort_msg("tree_base->base was null, expected null");
+        if (ptr_tree_base_int_1 == NULL)
+            ck_abort_msg("tree_base was NULL");
+        if (ptr_tree_base_int_1->base != NULL)
+            ck_abort_msg("tree_base->base was NULL, expected NULL");
         ck_assert_int_eq(insert(ptr_tree_base_int_1, &a), true);
-        if (ptr_tree_base_int_1->base == null)
-            ck_abort_msg("tree_base->base was null, expected assigned node");
+        if (ptr_tree_base_int_1->base == NULL)
+            ck_abort_msg("tree_base->base was NULL, expected assigned node");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
-        if (ptr_tree_base_int_1->base->left == null && ptr_tree_base_int_1->base->right == null)
-            ck_abort_msg("tree_base->base->children wasnt null, expected null");
+        if (ptr_tree_base_int_1->base->left == NULL && ptr_tree_base_int_1->base->right == NULL)
+            ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
         ck_assert_int_eq(insert(ptr_tree_base_int_1, &b), true);
         ck_assert_int_eq(ptr_tree_base_int_1->base->right->value, 6);
     } END_TEST
