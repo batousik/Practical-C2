@@ -1,6 +1,5 @@
 language: c
 before_install:
-	- sudo apt-get install check
-	- chmod 777 run
-script:
-	- ./run
+  - sudo apt-get install check
+  - chmod 777 run
+script: ./run
