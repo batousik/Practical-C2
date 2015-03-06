@@ -13,6 +13,7 @@ typedef struct TreeNodeName {
     void *value;
     struct TreeNodeName *left;
     struct TreeNodeName *right;
+    int cnt_dublicates;
 } TreeNode;
 
 typedef struct {

@@ -1,3 +1,4 @@
+#include <tkDecls.h>
 #include "treenode.h"
 
 // returns -1 if p1<p2, 0 if p1==p2, 1 if p1>p2,
@@ -37,6 +38,9 @@ TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 	temp->left = p_left;
 	temp->right = p_right;
 	temp->value = value;
+	temp->cnt_dublicates = 1;
+	if (value == NULL)
+		temp->cnt_dublicates = 0;
 	return temp;
 }
 
@@ -68,6 +72,7 @@ bool insert(TreeBase* tree, void* data){
 				break;
 			case 0:
 				// value exists!!!
+				current_node->cnt_dublicates = current_node->cnt_dublicates + 1;
 				return false;
 			case 1:
 				if (current_node->right != NULL){

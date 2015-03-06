@@ -60,15 +60,34 @@ START_TEST(test_BST_AND_INSERT_BST) {
     } END_TEST
 
 START_TEST(test_COMP_INTS) {
-
+        int a,b,c;
+        a = b = c = 123;
+        ck_assert_int_eq(comp_ints(&a,&b), 0);
+        ck_assert_int_eq(comp_ints(&a,&c), 0);
+        ck_assert_int_eq(comp_ints(&c,&b), 0);
+        b = 234;
+        c = 345;
+        ck_assert_int_eq(comp_ints(&a,&b), -1);
+        ck_assert_int_eq(comp_ints(&a,&c), -1);
+        ck_assert_int_eq(comp_ints(&c,&b), 1);
+        ck_assert_int_eq(comp_ints(&b,&a), 1);
+        ck_assert_int_eq(comp_ints(&c,&a), 1);
+        ck_assert_int_eq(comp_ints(&b,&c), -1);
+        ck_assert_int_eq(comp_ints(&a,&a), 1);
+        ck_assert_int_eq(comp_ints(&b,&b), 1);
+        ck_assert_int_eq(comp_ints(&c,&c), -1);
     } END_TEST
 
 START_TEST(test_CLEAN_INTS) {
+        ck_assert_int_eq(5, 5);
+    } END_TEST
 
+START_TEST(test_NODE_DUBLICATES) {
+        ck_assert_int_eq(5, 5);
     } END_TEST
 
 
-Suite * tree_program_suite(void) {
+Suite *tree_program_suite(void) {
     Suite *s;
     TCase *tc_core;
 
@@ -81,9 +100,9 @@ Suite * tree_program_suite(void) {
     tcase_add_test(tc_core, test_CHECK);
     tcase_add_test(tc_core, test_INSERT);
 	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
-	// tcase_add_test(tc_core, test_check_nonempty);
-	// tcase_add_test(tc_core, test_check_diag);
-	// tcase_add_test(tc_core, test_check_columns);
+    tcase_add_test(tc_core, test_COMP_INTS);
+    tcase_add_test(tc_core, test_CLEAN_INTS);
+    tcase_add_test(tc_core, test_NODE_DUBLICATES);
 	// tcase_add_test(tc_core, test_check_rows);
 	// tcase_add_test(tc_core, test_size5);
 	// tcase_add_test(tc_core, test_any_ms_size);
