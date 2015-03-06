@@ -9,13 +9,14 @@ int *int_arr_ptr;
 int arr_size = 100;
 
 void setup(void) {
-    int_arr_ptr = malloc(arr_size*sizeof(*pointer));
-    ptr_tree_base_int_1 = new_base(comp_ints, comp_ints, clean_int, print_ints);
+    int_arr_ptr = malloc(arr_size*sizeof(*int_arr_ptr));
+    ptr_tree_base_int_1 = new_base(comp_ints, clean_int, print_ints);
     ptr_tree_node = new_node(NULL,NULL,NULL);
-    if(int_arr_ptr==NULL || ptr_tree_base==NULL || ptr_tree_node== NULL) {
+    if(int_arr_ptr==NULL || ptr_tree_base_int_1==NULL || ptr_tree_node==NULL) {
         printf("Error allocating memory in test Setup");
         assert(NULL);
     }
+
     for (int i = 0; i < arr_size; ++i) {
         int r = rand() % 20000;
         *(int_arr_ptr + i) = r;
@@ -24,7 +25,7 @@ void setup(void) {
 
 void teardown(void){
 	free(int_arr_ptr);
-    free(ptr_tree_base);
+    free(ptr_tree_base_int_1);
     free(ptr_tree_node);
 }
 
