@@ -1,3 +1,8 @@
+pwd
+ls -la
+ls src/
+ls bin/
+ls tests/
 mv src/practical_trees bin/practical_trees
 cd bin
 chmod 777 practical_trees

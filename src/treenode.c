@@ -13,10 +13,8 @@ void clean_int(void* p){
 }
 
 void print_int(void* p){
-	
+	printf("%d\n", *(int*)p);
 }
-
-typedef void(*print_fn)(void*);
 
 int sum(int* a, int* b){
 	return *a+*b;
