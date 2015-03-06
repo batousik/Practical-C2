@@ -2,7 +2,8 @@
 
 // returns -1 if p1<p2, 0 if p1==p2, 1 if p1>p2,
 int comp_ints (void* p1, void* p2) {
-	return *(int*)p1 - *(int*)p2;
+	int res = (*(int*)p1 - *(int*)p2);
+	return (res<0)?-1:(res>0)?1:0;
 }
 
 void clean_int(void* p){
