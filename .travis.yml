@@ -1,6 +1,8 @@
 language: c
 before_install:
+  - chmod 777 valgrindinstall
   - chmod 777 run
+  - ./valgrindinstall
 install:
   - sudo apt-get install check
 before_script:

@@ -1,4 +1,3 @@
-#include <tkDecls.h>
 #include "treenode.h"
 
 // returns -1 if p1<p2, 0 if p1==p2, 1 if p1>p2,

@@ -1,6 +1,6 @@
 # Tests Makefile.am
 # Process this file with automake to produce Makefile.in
-CFLAGS = -Wall -Werror -std=c99
+CFLAGS = -Wall -Werror -std=c99 -O0 -g
 
 TESTS = check_test
 check_PROGRAMS = check_test
