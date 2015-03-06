@@ -1,11 +1,8 @@
 #include "treenode.h"
 
-// It is used to order 
-// nodes of your tree. 
-// This comparison function 
-// should return -1,0 or 1 (like strcmp)
+// returns -1 if p1<p2, 0 if p1==p2, 1 if p1>p2,
 int comp_ints (void* p1, void* p2) {
-	 return *(int*)p1 == *(int*)p2;
+	return *(int*)p1 - *(int*)p2;
 }
 
 void clean_int(void* p){
@@ -14,10 +11,6 @@ void clean_int(void* p){
 
 void print_int(void* p){
 	printf("%d\n", *(int*)p);
-}
-
-int sum(int* a, int* b){
-	return *a+*b;
 }
 
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
@@ -35,6 +28,43 @@ TreeNode* new_node(void* value){
 	temp->right = NULL;
 	temp->value = value;
 	return temp;
+}
+
+void insert(TreeBase* tree, void* data){
+	if (tree != NULL && data != NULL) {
+		/* set current to root of binary tree */
+		TreeNode *current_node = tree->base;
+		int done = 1;
+		while(!done){
+			int res = tree->comp(data, current_node->value);
+			switch (res){
+				case -1:
+					if (current_node->left != NULL) {
+						current_node = current_node->left;
+					} else {
+						current_node->left = new_node(data);
+						done = 0;
+					}
+					break;
+				case 0:
+					// value exists!!!
+					done = 0;
+					break;
+				case 1:
+					if (current_node->right != NULL) {
+						done = 0;
+						current_node = current_node->right;
+					} else {
+						current_node->right = new_node(data);
+						done = 0;
+					}
+					break;
+				default:
+					// should never be reached
+					break;
+			}
+		}
+	}
 }
 
 void printTree(TreeBase* tree){

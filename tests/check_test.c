@@ -413,7 +413,7 @@ Suite * magic_square_suite(void)
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("MagicSquare");
+    s = suite_create("TreeProgramSuite");
 
     /* Core test case */
     tc_core = tcase_create("Core");
