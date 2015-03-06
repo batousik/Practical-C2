@@ -1,6 +1,7 @@
 #ifndef TREENODE_H
 #define TREENODE_H
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct TreeNodeName {
     void* value;
