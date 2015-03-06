@@ -29,7 +29,7 @@ typedef struct NodeList {
 } StackNode;
 
 int comp_ints (void* p1, void* p2);
-void clean_int(void* p);
+void clean_ints(void* p);
 void print_ints(void *p);
 
 // Construct a new tree (which takes a comparison, print and clean method)
