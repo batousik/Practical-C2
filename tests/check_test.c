@@ -25,6 +25,7 @@ void setup(void) {
 
 void teardown(void){
 	free(int_arr_ptr);
+    ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
     free(ptr_tree_base_int_1);
     free(ptr_tree_node);
 }
@@ -34,15 +35,38 @@ START_TEST(test_CHECK) {
 } END_TEST
 
 START_TEST(test_INSERT) {
-        ck_assert_int_eq(5, 5);
-} END_TEST
+        int a,b;
+        a = 5;
+        b = 6;
+        if (ptr_tree_base_int_1 == null)
+            ck_abort_msg("tree_base was null");
+        if (ptr_tree_base_int_1->base != null)
+            ck_abort_msg("tree_base->base was null, expected null");
+        ck_assert_int_eq(insert(ptr_tree_base_int_1, &a), true);
+        if (ptr_tree_base_int_1->base == null)
+            ck_abort_msg("tree_base->base was null, expected assigned node");
+        ck_assert_int_eq(1, ptr_tree_base_int_1->size);
+        if (ptr_tree_base_int_1->base->left == null && ptr_tree_base_int_1->base->right == null)
+            ck_abort_msg("tree_base->base->children wasnt null, expected null");
+        ck_assert_int_eq(insert(ptr_tree_base_int_1, &b), true);
+        ck_assert_int_eq(ptr_tree_base_int_1->base->right->value, 6);
+    } END_TEST
 
-START_TEST(test_INSERT_BST) {
+START_TEST(test_BST_AND_INSERT_BST) {
         for (int i = 0; i < arr_size; ++i) {
             insert(ptr_tree_base_int_1, (int_arr_ptr + i));
         }
-        printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(printTree(ptr_tree_base_int_1), true);
     } END_TEST
+
+START_TEST(test_COMP_INTS) {
+
+    } END_TEST
+
+START_TEST(test_CLEAN_INTS) {
+
+    } END_TEST
+
 
 Suite * tree_program_suite(void) {
     Suite *s;
@@ -56,7 +80,7 @@ Suite * tree_program_suite(void) {
     tcase_add_checked_fixture(tc_core, setup, teardown);
     tcase_add_test(tc_core, test_CHECK);
     tcase_add_test(tc_core, test_INSERT);
-	tcase_add_test(tc_core, test_INSERT_BST);
+	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
 	// tcase_add_test(tc_core, test_check_nonempty);
 	// tcase_add_test(tc_core, test_check_diag);
 	// tcase_add_test(tc_core, test_check_columns);

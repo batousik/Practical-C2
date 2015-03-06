@@ -118,8 +118,11 @@ bool freeTree(TreeBase* tree){
 
 	return true;
 }
-
-bool printTree(TreeBase* tree){
+// method has two internal tests
+// if next value > current and
+// if all values were visited
+bool printTree(TreeBase *tree){
+	void *previous;
 	int cnt_tasks = 0;
 	if (tree == NULL) {
 		printf("PRINT: Cannot print empty tree base");
@@ -139,8 +142,15 @@ bool printTree(TreeBase* tree){
 		} else {
 			if (stack != NULL) {
 				current_node = pop(&stack);
+				previous = current_node->value;
 				tree->print(current_node->value);
 				cnt_tasks++;
+				if (cnt_tasks > 1) {
+					if (tree->comp(previous, current_node->value) != -1) {
+						printf("PRINTTREE: Invalid BST");
+						assert(NULL);
+					}
+				}
 				current_node = current_node->right;
 			} else {
 				return (cnt_tasks == tree->size);

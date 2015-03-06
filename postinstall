@@ -1,5 +1,15 @@
+CK_FORK=no
+
 mkdir bin
-mv src/practical_trees bin/practical_trees
+mv src/practical_trees bin/
+mv tests/check_test bin/
+chmod -R 777 bin
 cd bin
-chmod 777 practical_trees
+echo "____________________START____________________"
+echo "Valgrind on tests"
+valgrind --leak-check=full check_test
+echo "Valgrind on program"
+valgrind --leak-check=full practical_trees
+echo "Running program"
 ./practical_trees
+echo "_____________________END_____________________"
