@@ -29,6 +29,14 @@ TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
   return temp;
 }
 
+TreeNode* new_node(void* value){
+	TreeNode *temp = (TreeNode*) malloc (sizeof (TreeNode));
+	temp->left = NULL;
+	temp->right = NULL;
+	temp->value = value;
+	return temp;
+}
+
 void printTree(TreeBase* tree){
 	if (tree != NULL) {
 	  /* set current to root of binary tree */
@@ -52,4 +60,3 @@ void printTree(TreeBase* tree){
 	  } 
    }
 }
-

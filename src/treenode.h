@@ -31,7 +31,7 @@ void print_int(void* p);
 
 // Construct a new tree (which takes a comparison, print and clean method)
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p);
-
+TreeNode* new_node(void* value);
 // Look a value up in the tree - return NULL when comp finds no node equal to 'value'
 TreeNode* query(TreeBase* tree, void* value);
 
