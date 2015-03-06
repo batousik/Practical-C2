@@ -13,6 +13,11 @@ typedef int(*comp_fn)(void*, void*);
 typedef void(*clean_fn)(void*);
 typedef void(*print_fn)(void*);
 
+int comp_ints (void* p1, void* p2);
+void clean_int(void* p);
+void print_int(void* p);
+
+
 typedef struct {
   TreeNode* base;
   comp_fn comp;

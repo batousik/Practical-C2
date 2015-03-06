@@ -8,11 +8,11 @@ int comp_ints (void* p1, void* p2) {
 	 return *(int*)p1 == *(int*)p2;
 }
 
-void clean_int(){
+void clean_int(void* p){
  		
 }
 
-void print_int(){
+void print_int(void* p){
 	
 }
 
