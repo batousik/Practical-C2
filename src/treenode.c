@@ -37,6 +37,7 @@ void insert(TreeBase* tree, void* data){
 		int done = 0;
 		while(!done){
 			int res = tree->comp(data, current_node->value);
+			printf("res:%d, newval:%d, curval:%d\n", res, *(int*)data, *(int*)current_node->value);
 			switch (res){
 				case -1:
 					if (current_node->left != NULL) {
