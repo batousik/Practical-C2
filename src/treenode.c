@@ -6,88 +6,145 @@ int comp_ints (void* p1, void* p2) {
 	return (res<0)?-1:(res>0)?1:0;
 }
 
-void clean_int(void* p){
- 		
+void clean_ints(void* p){
+	free(p);
 }
 
-void print_int(void* p){
+void print_ints(void *p){
 	printf("%d\n", *(int*)p);
 }
 
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
-  TreeBase *temp = (TreeBase*) malloc (sizeof (TreeBase));
-  temp->base = (TreeNode*) malloc (sizeof (TreeNode));
-  temp->comp = co;
-  temp->clean = cl;
-  temp->print = p;
-  return temp;
+	TreeBase *temp = (TreeBase*) malloc (sizeof (TreeBase));
+	if(temp==NULL) {
+		printf("Error allocating memory in creating new tree base");
+		return NULL;
+	}
+	temp->base = NULL;
+	temp->comp = co;
+	temp->clean = cl;
+	temp->print = p;
+	temp->size = 0;
+	return temp;
 }
 
-TreeNode* new_node(void* value){
+TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 	TreeNode *temp = (TreeNode*) malloc (sizeof (TreeNode));
-	temp->left = NULL;
-	temp->right = NULL;
+	if(temp==NULL) {
+		printf("Error allocating memory in creating new tree node");
+		return NULL;
+	}
+	temp->left = p_left;
+	temp->right = p_right;
 	temp->value = value;
 	return temp;
 }
 
-void insert(TreeBase* tree, void* data){
-	if (tree != NULL && data != NULL) {
-		/* set current to root of binary tree */
-		TreeNode *current_node = tree->base;
-		int done = 0;
-		while(!done){
-			int res = tree->comp(data, current_node->value);
-			printf("res:%d, newval:%d, curval:%d\n", res, *(int*)data, *(int*)current_node->value);
-			switch (res){
-				case -1:
-					if (current_node->left != NULL) {
-						current_node = current_node->left;
-					} else {
-						current_node->left = new_node(data);
-						done = 1;
-					}
-					break;
-				case 0:
-					// value exists!!!
-					done = 1;
-					break;
-				case 1:
-					if (current_node->right != NULL){
-						current_node = current_node->right;
-					} else {
-						current_node->right = new_node(data);
-						done = 1;
-					}
-					break;
-				default:
-					// should never be reached
-					break;
+bool insert(TreeBase* tree, void* data){
+	// catch NULL data
+	if (tree == NULL || data == NULL) {
+		printf("INSERT: Cannot insert null data or into null tree");
+		return false;
+	}
+
+	TreeNode *current_node = tree->base;
+	// Empty tree condition
+	if (current_node == NULL){
+		current_node == new_node(data, NULL, NULL);
+		return true;
+	}
+	int done = 0;
+	while(true){
+		int res = tree->comp(data, current_node->value);
+		switch (res){
+			case -1:
+				if (current_node->left != NULL) {
+					current_node = current_node->left;
+				} else {
+					current_node->left = new_node(data, NULL, NULL);
+					tree->size=tree->size+1;
+					return true;
+				}
+				break;
+			case 0:
+				// value exists!!!
+				return false;
+			case 1:
+				if (current_node->right != NULL){
+					current_node = current_node->right;
+				} else {
+					current_node->right = new_node(data, NULL, NULL);
+					tree->size=tree->size+1;
+					return true;
+				}
+				break;
+			default:
+				printf("Insert procedure logic fail");
+				return false;
+		}
+	}
+	// unreachable code
+	return false;
+}
+
+bool freeTree(TreeBase* tree){
+	if (tree == NULL) {
+		printf("FREETREE: Cant free empty tree base");
+		return false;
+	}
+
+	TreeNode *current_node = NULL;
+	StackNode *stack = NULL;
+
+	if (tree->base == NULL) {
+		printf("FREETREE: Cant free empty tree");
+		return false;
+	}
+	push(&stack, tree->base);
+	// breadth first traversal
+	while (true) {
+		current_node = pop(&stack);
+		if (current_node == NULL)
+			return (0 == tree->size);
+		if (current_node->left != NULL)
+				push(&stack, current_node->left);
+		if (current_node->right != NULL)
+				push(&stack, current_node->right);
+		tree->clean(current_node->value);
+		free(current_node);
+		tree->size = tree->size - 1;
+	}
+
+
+	return true;
+}
+
+bool printTree(TreeBase* tree){
+	int cnt_tasks = 0;
+	if (tree == NULL) {
+		printf("PRINT: Cannot print empty tree base");
+		return false;
+	}
+	/* set current to root of binary tree */
+	TreeNode *current_node = tree->base;
+	if (tree->base == NULL) {
+		printf("PRINT: Cannot print empty tree");
+		return false;
+	}
+	StackNode *stack = NULL;
+	while (true) {
+		if(current_node !=  NULL) {
+			push(&stack, current_node);
+			current_node = current_node->left;
+		} else {
+			if (stack != NULL) {
+				current_node = pop(&stack);
+				tree->print(current_node->value);
+				cnt_tasks++;
+				current_node = current_node->right;
+			} else {
+				return (cnt_tasks == tree->size);
 			}
 		}
 	}
-}
-
-void printTree(TreeBase* tree){
-	if (tree != NULL) {
-	  /* set current to root of binary tree */
-	  TreeNode *current_node = tree->base;
-	  StackNode *stack = NULL;
-	  int done = 0;
-	 
-	  while (!done) {
-	    if(current_node !=  NULL) {
-	      push(&stack, current_node);                                               
-	      current_node = current_node->left;  
-	    } else {
-	      if (stack != NULL) {
-	        current_node = pop(&stack);
-	        tree->print(current_node->value);
-	 		current_node = current_node->right;
-	      }
-	      else
-	        done = 1;
-	    }
-	  } 
-   }
 }
