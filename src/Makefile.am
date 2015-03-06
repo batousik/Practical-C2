@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -std=c99
 
 ###################
 lib_LTLIBRARIES = libpractical_trees.la
-libpractical_trees_la_SOURCES = treenode.h treenode.c
+libpractical_trees_la_SOURCES = treenode.h treenode.c stacknode.c
 
 bin_PROGRAMS = practical_trees
 practical_trees_SOURCES = practical_trees.c
