@@ -15,8 +15,8 @@ int main(){
 	tree_base->base->right = new_node(&d);
 	tree_base->base->left->left = new_node(&a);
 	tree_base->base->right->right = new_node(&e);
-	insert(tree_base, f);
-	insert(tree_base, g);
+	insert(tree_base, &f);
+	insert(tree_base, &g);
 
 	printTree(tree_base);
 	return 0;
