@@ -5,7 +5,7 @@ AC_PREREQ([2.68])
 AC_INIT([MagicSquare], [1.0], [bbt@st-andrews.ac.uk])
 
 # unique source file --- primitive safety check 
-AC_CONFIG_SRCDIR([src/main.c])
+AC_CONFIG_SRCDIR([src/practical_trees.c])
 
 # place to put some extra build scripts installed
 AC_CONFIG_AUX_DIR([build-aux])
