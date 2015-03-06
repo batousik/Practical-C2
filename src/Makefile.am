@@ -1,7 +1,7 @@
 # Source Makefile.am
 # Process this file with automake to produce Makefile.in
 # Whatever flags you want to pass to the C compiler & linker
-CFLAGS = -Wall -Werror -std=c99
+CFLAGS = -Wall -Werror -std=c99 -O0 -g
 
 
 ###################
