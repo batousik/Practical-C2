@@ -56,26 +56,16 @@ START_TEST(test_INSERT) {
             ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
         isValid = insert(ptr_tree_base_int_1, &b);
         ck_assert_int_eq(isValid, true);
-        if(ptr_tree_base_int_1 == NULL)
-            printf("meow");
-        if(ptr_tree_base_int_1->base == NULL)
-            printf("meow2");
-        if(ptr_tree_base_int_1->base->left == NULL)
-            printf("meow3");
-        if(ptr_tree_base_int_1->base->right == NULL)
-            printf("meow4");
-        if(ptr_tree_base_int_1->base->right->value == NULL)
-            printf("meow5");
-
-        ///int z = *(int*)(ptr_tree_base_int_1->base->right->value);
+        int z = *(int*)(ptr_tree_base_int_1->base->right->value);
+        printf("%d&&\n", z);
         //ck_assert_int_eq(z, 6);
     } END_TEST
 
 START_TEST(test_BST_AND_INSERT_BST) {
-        for (int i = 0; i < arr_size; i++) {
-            insert(ptr_tree_base_int_1, (int_arr_ptr + i));
-        }
-        printTree(ptr_tree_base_int_1);
+//        for (int i = 0; i < arr_size; i++) {
+//            insert(ptr_tree_base_int_1, (int_arr_ptr + i));
+//        }
+//        printTree(ptr_tree_base_int_1);
         //bool isValid =
         //ck_assert_int_eq(isValid, true);
     } END_TEST
