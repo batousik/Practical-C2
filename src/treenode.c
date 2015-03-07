@@ -7,6 +7,11 @@ int comp_ints (void* p1, void* p2) {
 }
 
 void clean_ints(void *p){
+	if (p == NULL){
+		printf("Clean int ptr that is NULL !!\n");
+		fflush(stdout);
+		return;
+	}
 	free((int*)p);
 }
 
