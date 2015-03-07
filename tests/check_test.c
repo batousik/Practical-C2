@@ -25,11 +25,11 @@ void setup(void) {
 }
 
 void teardown(void){
-//	free(int_arr_ptr);
-//    ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
-//    ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
-//    free(ptr_tree_base_int_1);
-//    free(ptr_tree_node);
+	free(int_arr_ptr);
+    ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+    ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
+    free(ptr_tree_base_int_1);
+    free(ptr_tree_node);
 }
 
 START_TEST(test_CHECK) {
@@ -40,8 +40,8 @@ START_TEST(test_CHECK) {
 
 START_TEST(test_INSERT) {
         int *a, *b;
-        a = malloc(sizeof(int));
-        b = malloc(sizeof(int));
+        a = int_arr_ptr+1;
+        a = int_arr_ptr+2;
         *a = 5;
         *b = 6;
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
@@ -63,12 +63,12 @@ START_TEST(test_INSERT) {
     } END_TEST
 
 START_TEST(test_BST_AND_INSERT_BST) {
-//        for (int i = 0; i < arr_size; i++) {
-//            insert(ptr_tree_base_int_1, (int_arr_ptr + i));
-//        }
-//        printTree(ptr_tree_base_int_1);
-        //bool isValid =
-        //ck_assert_int_eq(isValid, true);
+        for (int i = 0; i < arr_size; i++) {
+            insert(ptr_tree_base_int_1, (int_arr_ptr + i));
+        }
+        printTree(ptr_tree_base_int_1);
+//        bool isValid =
+//        ck_assert_int_eq(isValid, true);
     } END_TEST
 
 START_TEST(test_COMP_INTS) {
