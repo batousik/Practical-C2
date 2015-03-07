@@ -4,15 +4,14 @@
 
 // DECLARE VARS
 TreeBase tree_base_int_1, *ptr_tree_base_int_1;
-TreeNode tree_node, *ptr_tree_node;
+TreeNode *ptr_tree_node;
 int *int_arr_ptr;
 int arr_size = 25;
 
 void setup(void) {
     int_arr_ptr = malloc(arr_size*sizeof(*int_arr_ptr));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
-    ptr_tree_node = new_node(&arr_size,NULL,NULL);
-    if(int_arr_ptr==NULL || ptr_tree_base_int_1==NULL || ptr_tree_node==NULL) {
+    if(int_arr_ptr==NULL || ptr_tree_base_int_1==NULL) {
         printf("Error allocating memory in test Setup\n");
         fflush(stdout);
         assert(NULL);
@@ -21,6 +20,8 @@ void setup(void) {
     for (int i = 0; i < arr_size; ++i) {
         int r = rand() % 20000;
         *(int_arr_ptr + i) = r;
+        printf("i:%d, value:%d\n", i, *(int_arr_ptr + i));
+        fflush(stdout);
     }
 }
 
@@ -28,7 +29,6 @@ void teardown(void){
     ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
     ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     free(ptr_tree_base_int_1);
-    free(ptr_tree_node);
     //free(int_arr_ptr);
 }
 
