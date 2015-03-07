@@ -77,9 +77,9 @@ START_TEST(test_COMP_INTS) {
         ck_assert_int_eq(comp_ints(&b,&a), 1);
         ck_assert_int_eq(comp_ints(&c,&a), 1);
         ck_assert_int_eq(comp_ints(&b,&c), -1);
-        ck_assert_int_eq(comp_ints(&a,&a), 1);
-        ck_assert_int_eq(comp_ints(&b,&b), 1);
-        ck_assert_int_eq(comp_ints(&c,&c), -1);
+        ck_assert_int_eq(comp_ints(&a,&a), 0);
+        ck_assert_int_eq(comp_ints(&b,&b), 0);
+        ck_assert_int_eq(comp_ints(&c,&c), 0);
     } END_TEST
 
 START_TEST(test_CLEAN_INTS) {

@@ -1,13 +1,30 @@
 #include "treenode.h"
 
 int main(){
-//	TreeBase tree_base_int_1, *ptr_tree_base_int_1;
-//	TreeNode tree_node, *ptr_tree_node;
-//	int *int_arr_ptr;
-//	int arr_size = 100;
-//	int a,b;
+//	printf("START\n");
+//	TreeBase  *ptr_tree_base_int_1;
+//	TreeNode  *ptr_tree_node;
+////	int *int_arr_ptr;
+////	int arr_size = 100;
+//	int a,b,c,d,e;
 //	a = 5;
 //	b = 6;
+//	c = 7;
+//	d = 8;
+//	e = 1;
+//	ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
+//	insert(ptr_tree_base_int_1, &b);
+//	insert(ptr_tree_base_int_1, &a);
+//	insert(ptr_tree_base_int_1, &c);
+//	insert(ptr_tree_base_int_1, &d);
+//	insert(ptr_tree_base_int_1, &e);
+//	ptr_tree_node = ptr_tree_base_int_1->base;
+//	printNode(ptr_tree_node);
+//	printNode(ptr_tree_node->left);
+//	printNode(ptr_tree_node->right);
+//	printTree(ptr_tree_base_int_1);
+//	getchar();
+//	printf("END\n");
 //	int_arr_ptr = malloc(arr_size*sizeof(*int_arr_ptr));
 //	ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
 //	ptr_tree_node = new_node(NULL,NULL,NULL);

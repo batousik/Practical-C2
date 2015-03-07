@@ -45,7 +45,8 @@ bool insert(TreeBase* tree, void* data);
 
 // Print a tree (from smallest to largest member, using the print function). 
 bool printTree(TreeBase* tree);
-
+// For debug purposes
+void printNode(TreeNode* node);
 // Free all memory from a tree (using the 'clean' function on each 'value')
 bool freeTree(TreeBase* tree);
 

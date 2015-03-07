@@ -34,12 +34,14 @@ TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 		printf("Error allocating memory in creating new tree node\n");
 		return NULL;
 	}
+	if(value==NULL) {
+		printf("Value is null in creating new tree node\n");
+		return NULL;
+	}
 	temp->left = p_left;
 	temp->right = p_right;
 	temp->value = value;
 	temp->cnt_dublicates = 1;
-	if (value == NULL)
-		temp->cnt_dublicates = 0;
 	return temp;
 }
 
@@ -146,19 +148,33 @@ bool printTree(TreeBase *tree){
 		} else {
 			if (stack != NULL) {
 				current_node = pop(&stack);
-				previous = current_node->value;
-				tree->print(current_node->value);
-				cnt_tasks++;
 				if (cnt_tasks > 1) {
 					if (tree->comp(previous, current_node->value) != -1) {
 						printf("PRINTTREE: Invalid BST\n");
 						assert(NULL);
 					}
 				}
+				previous = current_node->value;
+				tree->print(current_node->value);
+				cnt_tasks++;
 				current_node = current_node->right;
 			} else {
 				return (cnt_tasks == tree->size);
 			}
 		}
 	}
+}
+
+void printNode(TreeNode* node) {
+	if(node == NULL){
+		printf("Node is null\n");
+		return;
+	}
+	int a,b,c,d,e;
+	a = (node->left == NULL)?0:1;
+	b = (node->right == NULL)?0:1;
+	c = (node->value == NULL)?0:1;
+	d = node->cnt_dublicates;
+	e = (c!=0)?*(int*)node->value:0;
+	printf("L:%d, R:%d, V:%d, D:%d, intV:%d\n", a,b,c,d,e);
 }
