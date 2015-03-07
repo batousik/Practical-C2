@@ -1,13 +1,9 @@
 language: c
 before_install:
-  - chmod 777 valgrindinstall
   - chmod 777 run
-  - ./valgrindinstall
 install:
-  - sudo apt-get install check
+  - sudo apt-get update && sudo apt-get install valgrind check
 before_script:
   - autoreconf --install
 script: ./run
 after_success:
-  - chmod 777 postinstall
-  - ./postinstall

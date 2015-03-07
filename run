@@ -2,4 +2,19 @@
 
 ./configure
 make
-make check
+CK_FORK=no
+
+mkdir bin
+mv src/practical_trees bin/
+mv tests/check_test bin/
+chmod -R 777 bin
+cd bin
+ls
+echo "____________________START____________________"
+echo "Valgrind on tests"
+valgrind --leak-check=full -v --tool=memcheck ./check_test
+echo "Valgrind on program"
+valgrind --leak-check=full -v --tool=memcheck ./practical_trees
+echo "Running program"
+./practical_trees
+echo "_____________________END_____________________"
