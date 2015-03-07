@@ -9,12 +9,13 @@ mv src/practical_trees bin/
 mv tests/check_test bin/
 chmod -R 777 bin
 cd bin
-ls
 echo "____________________START____________________"
 echo "Valgrind on tests"
-valgrind --leak-check=full -v --tool=memcheck ./check_test
+libtool --mode=execute valgrind --leak-check=full -v --tool=memcheck ./check_test
+echo "____________________NEXT_____________________"
 echo "Valgrind on program"
-valgrind --leak-check=full -v --tool=memcheck ./practical_trees
+libtool --mode=execute valgrind --leak-check=full -v --tool=memcheck ./practical_trees
+echo "____________________NEXT_____________________"
 echo "Running program"
 ./practical_trees
-echo "_____________________END_____________________"
+echo "____________________END______________________"
