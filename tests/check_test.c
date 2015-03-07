@@ -9,7 +9,7 @@ int *int_arr_ptr;
 int arr_size = 25;
 
 void setup(void) {
-    int_arr_ptr = malloc(arr_size*sizeof(*int_arr_ptr));
+    int_arr_ptr = calloc(arr_size, sizeof(*int_arr_ptr));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
     if(int_arr_ptr==NULL || ptr_tree_base_int_1==NULL) {
         printf("Error allocating memory in test Setup\n");

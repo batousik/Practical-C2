@@ -6,7 +6,7 @@ int main(){
 //	printf("%d", *ptr);
 //	ptr = NULL;
 //	free(ptr);
-	int *ptr = malloc(10*(sizeof(int)));
+	int *ptr = calloc(10,(sizeof(int)));
 	int *ptr2 = (ptr+5);
 	*ptr2=5;
 	free(ptr2);
