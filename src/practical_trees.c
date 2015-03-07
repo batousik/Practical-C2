@@ -21,8 +21,6 @@ int main(){
 	printf("[v:%d, a:%p]", *(ptr2), ptr2);
 	printf("\n");
 	for (int i = 0; i < 10; ++i) {
-		int r = rand() % 20000;
-		*(ptr + i) = r;
 		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
 	}
 	printf("\n");

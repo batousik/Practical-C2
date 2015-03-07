@@ -12,7 +12,7 @@ int int_arr [arr_size];
 void setup(void) {
     // int_arr_ptr = calloc(arr_size, sizeof(*int_arr_ptr));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
-    if(int_arr_ptr==NULL || ptr_tree_base_int_1==NULL) {
+    if(ptr_tree_base_int_1==NULL) {
         printf("Error allocating memory in test Setup\n");
         fflush(stdout);
         assert(NULL);
@@ -92,10 +92,10 @@ START_TEST(test_CLEAN_INTS) {
 START_TEST(test_NODE_DUBLICATES) {
         int_arr[1] = 5;
         int_arr[2] = 5;
-        bool isValid = insert(ptr_tree_base_int_1, int_arr[1]);
+        bool isValid = insert(ptr_tree_base_int_1, &int_arr[1]);
         ck_assert_int_eq(isValid, true);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
-        isValid = insert(ptr_tree_base_int_1, int_arr[2]);
+        isValid = insert(ptr_tree_base_int_1, &int_arr[2]);
         ck_assert_int_eq(isValid, false);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
