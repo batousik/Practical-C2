@@ -25,11 +25,11 @@ void setup(void) {
 }
 
 void teardown(void){
-	free(int_arr_ptr);
-    ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
-    ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
-    free(ptr_tree_base_int_1);
-    free(ptr_tree_node);
+//	free(int_arr_ptr);
+//    ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+//    ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
+//    free(ptr_tree_base_int_1);
+//    free(ptr_tree_node);
 }
 
 START_TEST(test_CHECK) {
@@ -39,26 +39,27 @@ START_TEST(test_CHECK) {
 } END_TEST
 
 START_TEST(test_INSERT) {
-        int a,b;
-        a = 5;
-        b = 6;
+        int *a, *b;
+        a = malloc(sizeof(int));
+        b = malloc(sizeof(int));
+        *a = 5;
+        *b = 6;
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
         if (ptr_tree_base_int_1 == NULL)
             ck_abort_msg("tree_base was NULL");
         if (ptr_tree_base_int_1->base != NULL)
             ck_abort_msg("tree_base->base was not NULL, expected NULL");
-        bool isValid = insert(ptr_tree_base_int_1, &a);
+        bool isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
         if (ptr_tree_base_int_1->base == NULL)
             ck_abort_msg("tree_base->base was NULL, expected assigned node");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
         if (ptr_tree_base_int_1->base->left != NULL && ptr_tree_base_int_1->base->right != NULL)
             ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
-        isValid = insert(ptr_tree_base_int_1, &b);
+        isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, true);
         int z = *(int*)(ptr_tree_base_int_1->base->right->value);
-        printf("%d&&\n", z);
-        //ck_assert_int_eq(z, 6);
+        ck_assert_int_eq(z, 6);
     } END_TEST
 
 START_TEST(test_BST_AND_INSERT_BST) {

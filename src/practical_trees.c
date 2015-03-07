@@ -1,6 +1,11 @@
 #include "treenode.h"
 
 int main(){
+//	int *ptr = malloc(10*(sizeof(int)));
+//	int *ptr2 = (ptr+5);
+//	*ptr2=5;
+//	free(ptr2);
+//	free(ptr);
 //	printf("START\n");
 //	TreeBase  *ptr_tree_base_int_1;
 //	TreeNode  *ptr_tree_node;

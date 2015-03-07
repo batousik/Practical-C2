@@ -107,15 +107,14 @@ bool freeTree(TreeBase* tree){
 		fflush(stdout);
 		return true;
 	}
-
-	TreeNode *current_node = NULL;
-	StackNode *stack = NULL;
-
 	if (tree->base == NULL) {
 		printf("FREETREE: Cant free empty tree\n");
 		fflush(stdout);
 		return true;
 	}
+
+	TreeNode *current_node = NULL;
+	StackNode *stack = NULL;
 	push(&stack, tree->base);
 	// breadth first traversal
 	while (true) {
