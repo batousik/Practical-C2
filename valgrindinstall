@@ -1,4 +1,4 @@
-sudo apt-get install valgrind
+#sudo apt-get install valgrind
 
 #sudo apt-get install libc6-dbg:i386
 #wget "http://valgrind.org/downloads/valgrind-3.10.1.tar.bz2"
@@ -7,3 +7,4 @@ sudo apt-get install valgrind
 #./configure
 #make
 #sudo make install
+valgrind --version
