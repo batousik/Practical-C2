@@ -7,7 +7,7 @@ TreeBase tree_base_int_1, *ptr_tree_base_int_1;
 TreeNode *ptr_tree_node;
 // int *int_arr_ptr;
 int arr_size = 25;
-int int_arr [arr_size];
+int int_arr [25];
 
 void setup(void) {
     // int_arr_ptr = calloc(arr_size, sizeof(*int_arr_ptr));
