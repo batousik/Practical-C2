@@ -12,12 +12,14 @@ void clean_ints(void* p){
 
 void print_ints(void *p){
 	printf("%d\n", *(int*)p);
+	fflush(stdout);
 }
 
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
 	TreeBase *temp = (TreeBase*) malloc (sizeof (TreeBase));
 	if(temp==NULL) {
 		printf("Error allocating memory in creating new tree base\n");
+		fflush(stdout);
 		return NULL;
 	}
 	temp->base = NULL;
@@ -32,10 +34,12 @@ TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 	TreeNode *temp = (TreeNode*) malloc (sizeof (TreeNode));
 	if(temp==NULL) {
 		printf("Error allocating memory in creating new tree node\n");
+		fflush(stdout);
 		return NULL;
 	}
 	if(value==NULL) {
 		printf("Value is null in creating new tree node\n");
+		fflush(stdout);
 		return NULL;
 	}
 	temp->left = p_left;
@@ -49,6 +53,7 @@ bool insert(TreeBase* tree, void* data){
 	// catch NULL data
 	if (tree == NULL || data == NULL) {
 		printf("INSERT: Cannot insert null data or into null tree\n");
+		fflush(stdout);
 		return false;
 	}
 
@@ -86,6 +91,7 @@ bool insert(TreeBase* tree, void* data){
 				break;
 			default:
 				printf("Insert procedure logic fail\n");
+				fflush(stdout);
 				return false;
 		}
 	}
@@ -98,6 +104,7 @@ bool insert(TreeBase* tree, void* data){
 bool freeTree(TreeBase* tree){
 	if (tree == NULL) {
 		printf("FREETREE: Cant free empty tree base\n");
+		fflush(stdout);
 		return true;
 	}
 
@@ -106,6 +113,7 @@ bool freeTree(TreeBase* tree){
 
 	if (tree->base == NULL) {
 		printf("FREETREE: Cant free empty tree\n");
+		fflush(stdout);
 		return true;
 	}
 	push(&stack, tree->base);
@@ -132,12 +140,14 @@ bool printTree(TreeBase *tree){
 	int cnt_tasks = 0;
 	if (tree == NULL) {
 		printf("PRINT: Cannot print empty tree base\n");
+		fflush(stdout);
 		return false;
 	}
 	/* set current to root of binary tree */
 	TreeNode *current_node = tree->base;
 	if (tree->base == NULL) {
 		printf("PRINT: Cannot print empty tree\n");
+		fflush(stdout);
 		return false;
 	}
 	StackNode *stack = NULL;
@@ -151,6 +161,7 @@ bool printTree(TreeBase *tree){
 				if (cnt_tasks > 1) {
 					if (tree->comp(previous, current_node->value) != -1) {
 						printf("PRINTTREE: Invalid BST\n");
+						fflush(stdout);
 						assert(NULL);
 					}
 				}
@@ -168,6 +179,7 @@ bool printTree(TreeBase *tree){
 void printNode(TreeNode* node) {
 	if(node == NULL){
 		printf("Node is null\n");
+		fflush(stdout);
 		return;
 	}
 	int a,b,c,d,e;
@@ -177,4 +189,5 @@ void printNode(TreeNode* node) {
 	d = node->cnt_dublicates;
 	e = (c!=0)?*(int*)node->value:0;
 	printf("L:%d, R:%d, V:%d, D:%d, intV:%d\n", a,b,c,d,e);
+	fflush(stdout);
 }

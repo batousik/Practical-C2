@@ -6,14 +6,15 @@
 TreeBase tree_base_int_1, *ptr_tree_base_int_1;
 TreeNode tree_node, *ptr_tree_node;
 int *int_arr_ptr;
-int arr_size = 100;
+int arr_size = 25;
 
 void setup(void) {
     int_arr_ptr = malloc(arr_size*sizeof(*int_arr_ptr));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
     ptr_tree_node = new_node(&arr_size,NULL,NULL);
     if(int_arr_ptr==NULL || ptr_tree_base_int_1==NULL || ptr_tree_node==NULL) {
-        printf("Error allocating memory in test Setup");
+        printf("Error allocating memory in test Setup\n");
+        fflush(stdout);
         assert(NULL);
     }
 
@@ -45,22 +46,25 @@ START_TEST(test_INSERT) {
         if (ptr_tree_base_int_1 == NULL)
             ck_abort_msg("tree_base was NULL");
         if (ptr_tree_base_int_1->base != NULL)
-            ck_abort_msg("tree_base->base was NULL, expected NULL");
-        ck_assert_int_eq(insert(ptr_tree_base_int_1, &a), true);
+            ck_abort_msg("tree_base->base was not NULL, expected NULL");
+        bool isValid = insert(ptr_tree_base_int_1, &a);
+        ck_assert_int_eq(isValid, true);
         if (ptr_tree_base_int_1->base == NULL)
             ck_abort_msg("tree_base->base was NULL, expected assigned node");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
         if (ptr_tree_base_int_1->base->left != NULL && ptr_tree_base_int_1->base->right != NULL)
             ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
         ck_assert_int_eq(insert(ptr_tree_base_int_1, &b), true);
-        ck_assert_int_eq(*(int*)(ptr_tree_base_int_1->base->right->value), 6);
+        int z = *(int*)(ptr_tree_base_int_1->base->right->value);
+        ck_assert_int_eq(z, 6);
     } END_TEST
 
 START_TEST(test_BST_AND_INSERT_BST) {
         for (int i = 0; i < arr_size; ++i) {
             insert(ptr_tree_base_int_1, (int_arr_ptr + i));
         }
-        ck_assert_int_eq(printTree(ptr_tree_base_int_1), true);
+        bool isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
     } END_TEST
 
 START_TEST(test_COMP_INTS) {

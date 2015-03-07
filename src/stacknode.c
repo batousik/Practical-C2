@@ -3,7 +3,8 @@
 void push(StackNode **top_ref, TreeNode *tree_node) {
     StackNode *new_sn = (StackNode*) malloc(sizeof(StackNode));
     if(new_sn==NULL) {
-        printf("Error allocating memory in creating new node in the stack");
+        printf("Error allocating memory in creating new node in the stack\n");
+        fflush(stdout);
         assert(NULL);
     }
     new_sn->tree_node = tree_node;
@@ -16,6 +17,7 @@ TreeNode *pop(StackNode **top_ref) {
     StackNode *top;
     if(*top_ref == NULL) {
         printf("Stack Underflow \n");
+        fflush(stdout);
         assert(NULL);
     } else {
         top = *top_ref;
