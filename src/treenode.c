@@ -122,10 +122,10 @@ bool freeTree(TreeBase* tree){
 	StackNode *stack = NULL;
 	push(&stack, tree->base);
 	// breadth first traversal
-	while (true) {
+	while (stack != NULL) {
 		current_node = pop(&stack);
-		if (current_node == NULL)
-			return (0 == tree->size);
+//		if (current_node == NULL)
+//			return (0 == tree->size);
 		if (current_node->left != NULL)
 				push(&stack, current_node->left);
 		if (current_node->right != NULL)
@@ -134,7 +134,7 @@ bool freeTree(TreeBase* tree){
 		free(current_node);
 		tree->size = tree->size - 1;
 	}
-	return true;
+	return (0 == tree->size);
 }
 // method has two internal tests
 // if next value > current and

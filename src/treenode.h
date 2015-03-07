@@ -21,7 +21,6 @@ typedef struct {
     comp_fn comp;
     clean_fn clean;
     print_fn print;
-
     int size;
 } TreeBase;
 
