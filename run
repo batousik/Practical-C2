@@ -2,6 +2,7 @@
 
 ./configure
 make
+make check
 CK_FORK=no
 
 mkdir bin
