@@ -50,7 +50,7 @@ START_TEST(test_INSERT) {
         if (ptr_tree_base_int_1->base == NULL)
             ck_abort_msg("tree_base->base was NULL, expected assigned node");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
-        if (ptr_tree_base_int_1->base->left == NULL && ptr_tree_base_int_1->base->right == NULL)
+        if (ptr_tree_base_int_1->base->left != NULL && ptr_tree_base_int_1->base->right != NULL)
             ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
         ck_assert_int_eq(insert(ptr_tree_base_int_1, &b), true);
         ck_assert_int_eq(*(int*)(ptr_tree_base_int_1->base->right->value), 6);
