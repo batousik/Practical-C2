@@ -25,11 +25,11 @@ void setup(void) {
 }
 
 void teardown(void){
-	free(int_arr_ptr);
     ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
     ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     free(ptr_tree_base_int_1);
     free(ptr_tree_node);
+    free(int_arr_ptr);
 }
 
 START_TEST(test_CHECK) {
@@ -67,8 +67,8 @@ START_TEST(test_BST_AND_INSERT_BST) {
             insert(ptr_tree_base_int_1, (int_arr_ptr + i));
         }
         printTree(ptr_tree_base_int_1);
-//        bool isValid =
-//        ck_assert_int_eq(isValid, true);
+        bool isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
     } END_TEST
 
 START_TEST(test_COMP_INTS) {

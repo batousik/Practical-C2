@@ -6,8 +6,8 @@ int comp_ints (void* p1, void* p2) {
 	return (res<0)?-1:(res>0)?1:0;
 }
 
-void clean_ints(void* p){
-	free(p);
+void clean_ints(void *p){
+	free((int*)p);
 }
 
 void print_ints(void *p){
