@@ -8,9 +8,9 @@ cd bin
 ls
 echo "____________________START____________________"
 echo "Valgrind on tests"
-valgrind --leak-check=full -v --tool=memcheck ./check_test
+valgrind --leak-check=yes -v --tool=memcheck ./check_test
 echo "Valgrind on program"
-valgrind --leak-check=full -v --tool=memcheck ./practical_trees
+valgrind --leak-check=yes -v --tool=memcheck ./practical_trees
 echo "Running program"
 ./practical_trees
 echo "_____________________END_____________________"
