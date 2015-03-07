@@ -18,8 +18,12 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign 1.11.3])
 AC_PROG_CC
 AC_PROG_LIBTOOL
 
+#Valgrind
+AX_VALGRIND_CHECK
+
 # Checks for libraries.
 AC_CONFIG_MACRO_DIR([m4])
+
 # This macro is defined in check.m4 and tests if check.h and
 # libcheck.a are installed in your system. It sets CHECK_CFLAGS and
 # CHECK_LIBS accordingly.  
