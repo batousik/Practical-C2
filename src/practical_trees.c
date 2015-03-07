@@ -7,8 +7,26 @@ int main(){
 //	ptr = NULL;
 //	free(ptr);
 	int *ptr = calloc(10,(sizeof(int)));
-	int *ptr2 = (ptr+5);
+	int *ptr2 = (ptr);
+	for (int i = 0; i < 10; ++i) {
+		int r = rand() % 20000;
+		*(ptr + i) = r;
+		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
+		fflush(stdout);
+	}
+	printf("\n");
+	printf("[v:%d, a:%p]", *(ptr2), ptr2);
+	printf("\n");
 	*ptr2=5;
+	printf("[v:%d, a:%p]", *(ptr2), ptr2);
+	printf("\n");
+	for (int i = 0; i < 10; ++i) {
+		int r = rand() % 20000;
+		*(ptr + i) = r;
+		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
+	}
+	printf("\n");
+
 	free(ptr2);
 	free(ptr);
 //	printf("START\n");
