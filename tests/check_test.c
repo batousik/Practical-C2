@@ -26,11 +26,14 @@ void setup(void) {
 void teardown(void){
 	free(int_arr_ptr);
     ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+    ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     free(ptr_tree_base_int_1);
     free(ptr_tree_node);
 }
 
 START_TEST(test_CHECK) {
+        ck_assert_int_eq(true, 1);
+        ck_assert_int_eq(false, 0);
         ck_assert_int_eq(5, 5);
 } END_TEST
 
@@ -38,6 +41,7 @@ START_TEST(test_INSERT) {
         int a,b;
         a = 5;
         b = 6;
+        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
         if (ptr_tree_base_int_1 == NULL)
             ck_abort_msg("tree_base was NULL");
         if (ptr_tree_base_int_1->base != NULL)
