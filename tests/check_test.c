@@ -41,7 +41,7 @@ START_TEST(test_CHECK) {
 START_TEST(test_INSERT) {
         int *a, *b;
         a = int_arr_ptr+1;
-        a = int_arr_ptr+2;
+        b = int_arr_ptr+2;
         *a = 5;
         *b = 6;
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
@@ -95,7 +95,18 @@ START_TEST(test_CLEAN_INTS) {
     } END_TEST
 
 START_TEST(test_NODE_DUBLICATES) {
-        ck_assert_int_eq(5, 5);
+        int *a, *b;
+        a = int_arr_ptr+1;
+        b = int_arr_ptr+2;
+        *a = 5;
+        *b = 5;
+        bool isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
+        isValid = insert(ptr_tree_base_int_1, b);
+        ck_assert_int_eq(isValid, false);
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
+        ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
     } END_TEST
 
 
