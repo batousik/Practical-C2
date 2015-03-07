@@ -11,10 +11,10 @@ chmod -R 777 bin
 cd bin
 echo "____________________START____________________"
 echo "Valgrind on tests"
-libtool --mode=execute valgrind --leak-check=full -v --tool=memcheck ./check_test
+libtool --mode=execute valgrind --show-reachable=yes --leak-check=full -v --tool=memcheck ./check_test
 echo "____________________NEXT_____________________"
 echo "Valgrind on program"
-libtool --mode=execute valgrind --leak-check=full -v --tool=memcheck ./practical_trees
+libtool --mode=execute valgrind --show-reachable=yes --leak-check=full -v --tool=memcheck ./practical_trees
 echo "____________________NEXT_____________________"
 echo "Running program"
 ./practical_trees
