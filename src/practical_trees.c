@@ -1,6 +1,8 @@
 #include "treenode.h"
 
 int main(){
+	int *ptr = malloc(10*(sizeof(int)));
+	ptr = NULL;
 //	int *ptr = malloc(10*(sizeof(int)));
 //	int *ptr2 = (ptr+5);
 //	*ptr2=5;
