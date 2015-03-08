@@ -6,7 +6,7 @@ int main(){
 	//testa();
 	//testx();
 	testy();
-	//testfile();
+	testfile();
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
 //		*(ptr + i) = r;
@@ -87,17 +87,6 @@ int main(){
 }
 
 void testfile(){
-
-	int *ptr;
-	ptr = NULL;
-	if (ptr)
-		printf("true NULL");
-	ptr = malloc(sizeof(int));
-	if (ptr)
-		printf("true2\n");
-	ptr = NULL;
-	if (ptr)
-		printf("true NULL2");
 
 	printf("______TESTING FILE______\n");
 	fflush(stdout);

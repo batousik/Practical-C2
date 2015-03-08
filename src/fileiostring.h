@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 // method to wrap open file command
-FILE *open_file();
+FILE *open_file(char *f_rel_name, char *mode);
 // method to close file
 bool close_file(FILE *fp);
 // method to write to file
