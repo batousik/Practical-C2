@@ -180,7 +180,7 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
-
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
         ptr_tree_base_int_1 = NULL;
         free(ptr_tree_base_int_1);
 
@@ -206,7 +206,6 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         fflush(stdout);
         printf("________END_____________\n");
         fflush(stdout);
-        ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     } END_TEST
 
 Suite *tree_program_suite(void) {
@@ -246,6 +245,8 @@ int main(void) {
 	Suite *s;
 	SRunner *sr;
 
+    // setting to no fork()
+    srunner_set_fork_status(sr, CK_NOFORK);
 	s = tree_program_suite();
 	sr = srunner_create(s);
 
