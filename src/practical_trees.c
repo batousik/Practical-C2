@@ -88,19 +88,19 @@ int main(){
 
 void testfile(){
 
-	printf("______TESTING FILE______\n");
-	fflush(stdout);
-
-	//char fname[100] = "C:\\Users\\btsyrenov\\ClionProjects\\Practical-C2\\resource\\resource\\tiny.txt";
-	char fname ="C:\\hm.txt";
-	char fmode = "r";
-	FILE *ifp = open_file(&fname, &fmode);
-	if (!ifp){
-		printf("Failed to open file\n");
-		fflush(stdout);
-		return;
-	}
-	close_file(ifp);
+//	printf("______TESTING FILE______\n");
+//	fflush(stdout);
+//
+//	//char fname[100] = "C:\\Users\\btsyrenov\\ClionProjects\\Practical-C2\\resource\\resource\\tiny.txt";
+//	//char fname = "C:\\hm.txt";
+//	//char fmode = "r";
+//	FILE *ifp = open_file("C:\\hm.txt", "r");
+//	if (!ifp){
+//		printf("Failed to open file\n");
+//		fflush(stdout);
+//		return;
+//	}
+//	close_file(ifp);
 }
 
 
