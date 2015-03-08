@@ -4,7 +4,7 @@
 make
 make check
 CK_FORK=no
-
+export CK_FORK=no
 mkdir bin
 mv src/practical_trees bin/
 mv tests/check_test bin/

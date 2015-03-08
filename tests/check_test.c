@@ -5,12 +5,12 @@
 // DECLARE VARS
 TreeBase tree_base_int_1, *ptr_tree_base_int_1;
 TreeNode *ptr_tree_node;
-// int *int_arr_ptr;
+int *int_arr_ptr;
 int arr_size = 25;
 int int_arr [25];
 
 void setup(void) {
-    // int_arr_ptr = calloc(arr_size, sizeof(*int_arr_ptr));
+    int_arr_ptr = calloc(arr_size * (sizeof(int)));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
     if(ptr_tree_base_int_1==NULL) {
         printf("Error allocating memory in test Setup\n");
@@ -19,7 +19,7 @@ void setup(void) {
     }
     for (int i = 0; i < arr_size; ++i) {
         int r = rand() % 20000;
-        int_arr[i] = r;
+        *(int_arr_ptr+i) = r;
     }
 }
 
@@ -27,7 +27,6 @@ void teardown(void){
     ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
     ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     free(ptr_tree_base_int_1);
-    //free(int_arr_ptr);
 }
 
 START_TEST(test_CHECK) {
@@ -37,29 +36,35 @@ START_TEST(test_CHECK) {
 } END_TEST
 
 START_TEST(test_INSERT) {
-        int_arr[1] = 5;
-        int_arr[2] = 6;
+        int *ptr_a, *ptr_b;
+        ptr_a = malloc(sizeof(int));
+        ptr_b = malloc(sizeof(int));
+        *a = 5;
+        *b = 6;
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
         if (ptr_tree_base_int_1 == NULL)
             ck_abort_msg("tree_base was NULL");
         if (ptr_tree_base_int_1->base != NULL)
             ck_abort_msg("tree_base->base was not NULL, expected NULL");
-        bool isValid = insert(ptr_tree_base_int_1, &int_arr[1]);
+        bool isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
         if (ptr_tree_base_int_1->base == NULL)
             ck_abort_msg("tree_base->base was NULL, expected assigned node");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
         if (ptr_tree_base_int_1->base->left != NULL && ptr_tree_base_int_1->base->right != NULL)
             ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
-        isValid = insert(ptr_tree_base_int_1, &int_arr[2]);
+        isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, true);
         int z = *(int*)(ptr_tree_base_int_1->base->right->value);
         ck_assert_int_eq(z, 6);
     } END_TEST
 
 START_TEST(test_BST_AND_INSERT_BST) {
+        int *ptr;
         for (int i = 0; i < arr_size; i++) {
-            insert(ptr_tree_base_int_1, &int_arr[i]);
+            ptr = malloc(sizeof(int));
+            memcpy(ptr, (ptr_int_arr + i), sizeof(int));
+            insert(ptr_tree_base_int_1, ptr);
         }
         printTree(ptr_tree_base_int_1);
         bool isValid = printTree(ptr_tree_base_int_1);
@@ -90,15 +95,20 @@ START_TEST(test_CLEAN_INTS) {
     } END_TEST
 
 START_TEST(test_NODE_DUBLICATES) {
-        int_arr[1] = 5;
-        int_arr[2] = 5;
-        bool isValid = insert(ptr_tree_base_int_1, &int_arr[1]);
+        int *ptr_a, *ptr_b;
+        ptr_a = malloc(sizeof(int));
+        ptr_b = malloc(sizeof(int));
+        *a = 5;
+        *b = 5;
+        bool isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
-        isValid = insert(ptr_tree_base_int_1, &int_arr[2]);
+        isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, false);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
+        *b=6;
+        ck_assert_int_eq(isValid, true);
     } END_TEST
 
 
