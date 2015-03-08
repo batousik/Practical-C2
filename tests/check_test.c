@@ -168,7 +168,9 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
             ptr_helper = malloc(sizeof(int));
             if (!ptr_helper)
                 ck_abort_msg("FAILED memory allocation\n");
-            *ptr_helper = *(int_arr_ptr + i);
+            printf("%d\n",*(int_arr_ptr + i));
+            fflush(stdout);
+            //*ptr_helper =
             isValid = insert(ptr_tree_base_int_1, ptr_helper);
             ck_assert_int_eq(isValid, true);
         }
