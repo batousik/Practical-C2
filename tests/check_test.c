@@ -17,11 +17,10 @@ void setup_x(void) {
         fflush(stdout);
         assert(NULL);
     }
+    srand(time(NULL));
     for (int i = 0; i < arr_size; ++i) {
-        int r = rand() % 20000;
+        int r = (rand() % 20000) - 10000;
         *(int_arr_ptr+i) = r;
-        printf("setup::%d\n",*(int_arr_ptr + i));
-        fflush(stdout);
     }
 }
 
@@ -165,7 +164,6 @@ START_TEST(test_CHECK) {
 START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
         fflush(stdout);
-
         int *ptr_helper;
         for (int i = 0; i < arr_size; ++i) {
             ptr_helper = malloc(sizeof(int));
@@ -177,59 +175,59 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
             isValid = insert(ptr_tree_base_int_1, ptr_helper);
             ck_assert_int_eq(isValid, true);
         }
-//        // should print tree
-//        printf("!!!Next lines has to be tree printed out\n");
-//        fflush(stdout);
-//        isValid = printTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, true);
-//        fflush(stdout);
-//        printf("_____________________\n");
-//        fflush(stdout);
-//
-//        // No output
-//        isValid = freeTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, true);
-//        // should print cannot free empty tree
-//        printf("!!!Next line has to be:\"cannot free empty tree\"\n");
-//        fflush(stdout);
-//        isValid = freeTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, true);
-//        fflush(stdout);
-//
-//        // should print cannot print empty tree
-//        printf("!!!Next line has to be:\"cannot print empty tree\"\n");
-//        fflush(stdout);
-//        isValid = printTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, false);
-//        fflush(stdout);
-//        printf("_____________________\n");
-//        fflush(stdout);
-//        ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
-//        free(ptr_tree_base_int_1);
-//        ptr_tree_base_int_1 = NULL;
-//
-//        // should print cannot free empty tree base
-//        printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
-//        fflush(stdout);
-//        isValid = freeTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, true);
-//        fflush(stdout);
-//
-//        // should print cannot print empty tree base
-//        printf("!!!Next line has to be:\"cannot print empty tree base\"\n");
-//        fflush(stdout);
-//        isValid = printTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, false);
-//        fflush(stdout);
-//        printf("_____________________\n");
-//        fflush(stdout);
-//
-//        free(int_arr_ptr);
-//        int_arr_ptr = NULL;
-//        printf("freeing the array...\n");
-//        fflush(stdout);
-//        printf("________END_____________\n");
-//        fflush(stdout);
+        // should print tree
+        printf("!!!Next lines has to be tree printed out\n");
+        fflush(stdout);
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
+        fflush(stdout);
+        printf("_____________________\n");
+        fflush(stdout);
+
+        // No output
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
+        // should print cannot free empty tree
+        printf("!!!Next line has to be:\"cannot free empty tree\"\n");
+        fflush(stdout);
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
+        fflush(stdout);
+
+        // should print cannot print empty tree
+        printf("!!!Next line has to be:\"cannot print empty tree\"\n");
+        fflush(stdout);
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, false);
+        fflush(stdout);
+        printf("_____________________\n");
+        fflush(stdout);
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
+        free(ptr_tree_base_int_1);
+        ptr_tree_base_int_1 = NULL;
+
+        // should print cannot free empty tree base
+        printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
+        fflush(stdout);
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
+        fflush(stdout);
+
+        // should print cannot print empty tree base
+        printf("!!!Next line has to be:\"cannot print empty tree base\"\n");
+        fflush(stdout);
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, false);
+        fflush(stdout);
+        printf("_____________________\n");
+        fflush(stdout);
+
+        free(int_arr_ptr);
+        int_arr_ptr = NULL;
+        printf("freeing the array...\n");
+        fflush(stdout);
+        printf("________END_____________\n");
+        fflush(stdout);
     } END_TEST
 
 //START_TEST(test_TREE_QUERY) {
