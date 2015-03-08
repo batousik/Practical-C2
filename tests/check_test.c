@@ -323,9 +323,10 @@ int main(void) {
 	SRunner *sr;
 
     // setting to no fork()
-    srunner_set_fork_status(sr, CK_NOFORK);
 	s = tree_program_suite();
 	sr = srunner_create(s);
+
+    srunner_set_fork_status(sr, CK_NOFORK);
 
 	srunner_set_log (sr, "test.log");
 	srunner_run_all(sr, CK_VERBOSE);
