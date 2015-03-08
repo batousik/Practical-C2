@@ -64,7 +64,7 @@ START_TEST(test_BST_AND_INSERT_BST) {
         int *ptr;
         for (int i = 0; i < arr_size; i++) {
             ptr = malloc(sizeof(int));
-            memcpy(ptr, (ptr_int_arr + i), sizeof(int));
+            memcpy(ptr, (int_arr_ptr + i), sizeof(int));
             insert(ptr_tree_base_int_1, ptr);
         }
         printTree(ptr_tree_base_int_1);
