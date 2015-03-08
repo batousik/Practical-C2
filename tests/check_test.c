@@ -94,8 +94,8 @@ START_TEST(test_COMP_STRS) {
         ck_assert_int_eq(comp_strs(&a,&b), 0);
         ck_assert_int_eq(comp_strs(&a,&c), 0);
         ck_assert_int_eq(comp_strs(&c,&b), 0);
-        *b = "masdf\0";
-        *c = "z\0";
+        b = "masdf\0";
+        c = "z\0";
         ck_assert_int_eq(comp_strs(&a,&b), -1);
         ck_assert_int_eq(comp_strs(&a,&c), -1);
         ck_assert_int_eq(comp_strs(&c,&b), 1);
