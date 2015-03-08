@@ -263,9 +263,9 @@ START_TEST(test_TREE_QUERY) {
         for (int i = 0; i < temp_arr_size; ++i) {
             ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
             ck_assert_int_eq(isValid, true);
-            ck_assert(ptr_tree_node);
-            ptr_tree_node = NULL;
         }
+
+        ptr_tree_node = NULL;
 
         for (int i = 0; i < temp_arr_size; ++i) {
             ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
