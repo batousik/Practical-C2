@@ -68,6 +68,8 @@ bool insert(TreeBase* tree, void* data){
 	// Empty tree condition
 	if (!current_node){
 		tree->base = new_node(data, NULL, NULL);
+		if (!(tree->base))
+			return false;
 		tree->total_num = tree->total_num + 1;
 		tree->size = tree->size + 1;
 		return true;
@@ -80,6 +82,8 @@ bool insert(TreeBase* tree, void* data){
 					current_node = current_node->left;
 				} else {
 					current_node->left = new_node(data, NULL, NULL);
+					if (!(current_node->left))
+						return false;
 					tree->total_num = tree->total_num + 1;
 					tree->size=tree->size+1;
 					return true;
@@ -95,6 +99,8 @@ bool insert(TreeBase* tree, void* data){
 					current_node = current_node->right;
 				} else {
 					current_node->right = new_node(data, NULL, NULL);
+					if (!(current_node->right))
+						return false;
 					tree->total_num = tree->total_num + 1;
 					tree->size=tree->size+1;
 					return true;
