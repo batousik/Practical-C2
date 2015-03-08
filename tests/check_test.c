@@ -228,7 +228,7 @@ START_TEST(test_TREE_QUERY) {
         int *b_arr = malloc(temp_arr_size * sizeof(int));
 
 
-        if (!a || !b)
+        if (!a_arr || !b_arr)
             ck_abort_msg("FAILED memory allocation\n");
 
         *(a_arr + 0) = 34;
@@ -249,12 +249,12 @@ START_TEST(test_TREE_QUERY) {
         *(a_arr + 15) = -234;
         *(a_arr + 16) = -4554;
 
-        for (int i = 0; i < a_arr_size; ++i) {
+        for (int i = 0; i < temp_arr_size; ++i) {
             isValid = insert(ptr_tree_base_int_1, (a+i));
             ck_assert_int_eq(isValid, true);
         }
 
-        memcpy(b_arr, a_arr+i, temp_arr_size*(sizeof(int)));
+        memcpy(b_arr, a_arr, temp_arr_size*(sizeof(int)));
 
         for (int i = 0; i < temp_arr_size; ++i) {
             *(b_arr+i)=*(b_arr+i)+1;
