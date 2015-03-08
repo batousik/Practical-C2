@@ -6,7 +6,7 @@ int main(){
 	*a = 6969;
 	free(a);
 	a = NULL;
-	if (a) {
+	if (!a) {
 		bool g = (a == NULL);
 		printf("%s\n", g ? "a is null" : "a is not null");
 		fflush(stdout);
@@ -22,11 +22,12 @@ int main(){
 	free(a);
 	free(b);
 
-
+	printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________-\n");
+	fflush(stdout);
 	TreeBase *ptr_tree_base_int_1;
 	int *int_arr_ptr;
-	int arr_size = 25;
-	int_arr_ptr = calloc(arr_size, (sizeof(int)));
+	int arr_size = 4;
+	int_arr_ptr = malloc(arr_size * (sizeof(int)));
 	ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
 
 	for (int i = 0; i < arr_size; ++i) {
@@ -42,17 +43,26 @@ int main(){
 		memcpy(ptr, (int_arr_ptr + i), sizeof(int));
 		insert(ptr_tree_base_int_1, ptr);
 	}
-	//printTree(ptr_tree_base_int_1);
+	printTree(ptr_tree_base_int_1);
+	printf("_____________________-\n");
+	fflush(stdout);
 
 	freeTree(ptr_tree_base_int_1);
+	freeTree(ptr_tree_base_int_1);
+	printTree(ptr_tree_base_int_1);
+	printf("_____________________-\n");
+	fflush(stdout);
 
-	//printTree(ptr_tree_base_int_1);
+	ptr_tree_base_int_1 = NULL;
 	free(ptr_tree_base_int_1);
+	freeTree(ptr_tree_base_int_1);
+	printTree(ptr_tree_base_int_1);
+	printf("_____________________-\n");
+	fflush(stdout);
 
-	//printTree(ptr_tree_base_int_1);
 	free(int_arr_ptr);
 
-	printf("horay\n");
+	printf("________END_____________-\n");
 	fflush(stdout);
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;

@@ -125,8 +125,6 @@ bool freeTree(TreeBase* tree){
 	// breadth first traversal
 	while (stack) {
 		current_node = pop(&stack);
-//		if (current_node == NULL)
-//			return (0 == tree->size);
 		if (current_node->left)
 				push(&stack, current_node->left);
 		if (current_node->right)
@@ -136,13 +134,14 @@ bool freeTree(TreeBase* tree){
 		current_node = NULL;
 		tree->size = tree->size - 1;
 	}
+	tree->base = NULL;
 	return (0 == tree->size);
 }
 // method has two internal tests
 // if next value > current and
 // if all values were visited
 bool printTree(TreeBase *tree){
-	void *previous;
+	void *previous = NULL;
 	int cnt_tasks = 0;
 	if (!tree) {
 		printf("PRINT: Cannot print empty tree base\n");
