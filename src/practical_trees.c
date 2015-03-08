@@ -1,33 +1,11 @@
 #include <string.h>
+#include "fileiostring.h"
 #include "treenode.h"
 
 int main(){
-	int *a = calloc(1,(sizeof(int)));
-	if (a){
-		printf("allocated success\n");
-		fflush(stdout);
-	}
-
-	*a = 6969;
-	free(a);
-	a = NULL;
-	if (!a) {
-		bool g = (a == NULL);
-		printf("%s\n", g ? "a is null" : "a is not null");
-		fflush(stdout);
-	}
-
-	a = calloc(1,(sizeof(int)));
-	*a = 6969;
-	int *b = a;
-	a = calloc(1,(sizeof(int)));
-	*a = 1324;
-	printf("a: %d, b: %d\n",*a,*b);
-	fflush(stdout);
-	free(a);
-	free(b);
-
+	testa();
 	testx();
+	testfile();
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
 //		*(ptr + i) = r;
@@ -107,7 +85,48 @@ int main(){
 	return 0;
 }
 
+void testfile(){
+	printf("_____________TESTSING FILE______\n");
+	fflush(stdout);
 
+	char fname[100] = "../resource/tiny.txt";
+	char fmode[3] = "r";
+	FILE *ifp = open_file(&fname, &fmode);
+	if (!ifp){
+		printf("Failed to open file\n");
+		fflush(stdout);
+		return;
+	}
+	close_file(ifp);
+}
+
+
+void testa(){
+	int *a = calloc(1,(sizeof(int)));
+	if (a){
+		printf("allocated success\n");
+		fflush(stdout);
+	}
+
+	*a = 6969;
+	free(a);
+	a = NULL;
+	if (!a) {
+		bool g = (a == NULL);
+		printf("%s\n", g ? "a is null" : "a is not null");
+		fflush(stdout);
+	}
+
+	a = calloc(1,(sizeof(int)));
+	*a = 6969;
+	int *b = a;
+	a = calloc(1,(sizeof(int)));
+	*a = 1324;
+	printf("a: %d, b: %d\n",*a,*b);
+	fflush(stdout);
+	free(a);
+	free(b);
+}
 void testx(){
 
 	TreeBase *ptr_tree_base_int_1;
