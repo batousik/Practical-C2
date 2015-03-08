@@ -1,8 +1,0 @@
-enable_testing()
-find_package(Check REQUIRED)
-include_directories(${CHECK_INCLUDE_DIRS})
-set(LIBS ${LIBS} ${CHECK_LIBRARIES} tree_practical_clib)
-include_directories(. ../src)
-add_executable(check_test check_test.c)
-target_link_libraries(check_test ${LIBS})
-add_test(check_test ${CMAKE_CURRENT_BINARY_DIR}/check_test)
