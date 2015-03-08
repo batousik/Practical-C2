@@ -115,18 +115,18 @@ START_TEST(test_INSERT) {
         ck_assert_int_eq(z, 6);
     } END_TEST
 
-//START_TEST(test_BST_AND_INSERT_BST) {
-//        int *ptr;
-//        for (int i = 0; i < arr_size; i++) {
-//            ptr = malloc(sizeof(int));
-//            memcpy(ptr, (int_arr_ptr + i), sizeof(int));
-//            insert(ptr_tree_base_int_1, ptr);
-//        }
-//        isValid = printTree(ptr_tree_base_int_1);
-//        ck_assert_int_eq(isValid, true);
-//    } END_TEST
-//
-//
+START_TEST(test_BST_AND_INSERT_BST) {
+        int *ptr;
+        for (int i = 0; i < arr_size; i++) {
+            ptr = malloc(sizeof(int));
+            memcpy(ptr, (int_arr_ptr + i), sizeof(int));
+            insert(ptr_tree_base_int_1, ptr);
+        }
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
+    } END_TEST
+
+
 START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         int *a, *b, *c;
         a = malloc(sizeof(int));
@@ -158,6 +158,8 @@ START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         ck_assert_int_eq(ptr_tree_base_int_1->size, 2);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
         ck_assert_int_eq(ptr_tree_base_int_1->base->right->cnt_dublicates, 1);
+
+
 
     } END_TEST
 
@@ -307,7 +309,7 @@ Suite *tree_program_suite(void) {
     tcase_add_test(tc_core, test_CLEAN_INTS);
     tcase_add_test(tc_core, test_PRINT_INTS);
     tcase_add_test(tc_core, test_INSERT);
-//	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
+	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
 //	tcase_add_test(tc_core, test_TREE_QUERY);
 	tcase_add_test(tc_core, test_NODE_DUBLICATES_AND_COUNTERS);
