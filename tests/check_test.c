@@ -164,13 +164,13 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
         fflush(stdout);
 
-//        int *ptr;
-//        for (int i = 0; i < arr_size; i++) {
-//            ptr = malloc(sizeof(int));
-//            memcpy(ptr, (int_arr_ptr + i), sizeof(int));
-//            isValid = insert(ptr_tree_base_int_1, ptr);
-//            ck_assert_int_eq(isValid, true);
-//        }
+        int *ptr;
+        for (int i = 0; i < arr_size; i++) {
+            ptr = malloc(sizeof(int));
+            *ptr = *(int_arr_ptr + i);
+            isValid = insert(ptr_tree_base_int_1, ptr);
+            ck_assert_int_eq(isValid, true);
+        }
 //        // should print tree
 //        printf("!!!Next lines has to be tree printed out\n");
 //        fflush(stdout);
