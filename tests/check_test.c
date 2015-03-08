@@ -124,22 +124,37 @@ START_TEST(test_BST_AND_INSERT_BST) {
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
-START_TEST(test_NODE_DUBLICATES) {
-        int *a, *b;
+START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
+        int *a, *b, *c;
         a = malloc(sizeof(int));
         b = malloc(sizeof(int));
+        c = malloc(sizeof(int));
         *a = 5;
         *b = 5;
+        *c = 6;
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
+        ck_assert_int_eq(ptr_tree_base_int_1->total_num, 0);
+
         bool isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
+        ck_assert_int_eq(ptr_tree_base_int_1->total_num, 1);
+        ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 1);
+
         isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, false);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
-        *b=6;
-        isValid = insert(ptr_tree_base_int_1, b);
+        ck_assert_int_eq(ptr_tree_base_int_1->total_num, 2);
+
+        isValid = insert(ptr_tree_base_int_1, c);
         ck_assert_int_eq(isValid, true);
+
+        ck_assert_int_eq(ptr_tree_base_int_1->total_num, 3);
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
+        ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
+        ck_assert_int_eq(ptr_tree_base_int_1->base->right->cnt_dublicates, 1);
+        // no need to free allocations, will be done in tear down
     } END_TEST
 
 START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {

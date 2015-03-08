@@ -33,6 +33,7 @@ TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
 	temp->clean = cl;
 	temp->print = p;
 	temp->size = 0;
+	temp->total_num = 0;
 	return temp;
 }
 
@@ -67,6 +68,7 @@ bool insert(TreeBase* tree, void* data){
 	// Empty tree condition
 	if (!current_node){
 		tree->base = new_node(data, NULL, NULL);
+		tree->total_num = tree->total_num + 1;
 		tree->size = tree->size + 1;
 		return true;
 	}
@@ -78,12 +80,14 @@ bool insert(TreeBase* tree, void* data){
 					current_node = current_node->left;
 				} else {
 					current_node->left = new_node(data, NULL, NULL);
+					tree->total_num = tree->total_num + 1;
 					tree->size=tree->size+1;
 					return true;
 				}
 				break;
 			case 0:
 				// value exists!!!
+				tree->total_num = tree->total_num + 1;
 				current_node->cnt_dublicates = current_node->cnt_dublicates + 1;
 				return false;
 			case 1:
@@ -91,6 +95,7 @@ bool insert(TreeBase* tree, void* data){
 					current_node = current_node->right;
 				} else {
 					current_node->right = new_node(data, NULL, NULL);
+					tree->total_num = tree->total_num + 1;
 					tree->size=tree->size+1;
 					return true;
 				}
@@ -130,9 +135,10 @@ bool freeTree(TreeBase* tree){
 		if (current_node->right)
 				push(&stack, current_node->right);
 		tree->clean(current_node->value);
+		tree->total_num = tree->total_num - current_node->cnt_dublicates;
+		tree->size = tree->size - 1;
 		free(current_node);
 		current_node = NULL;
-		tree->size = tree->size - 1;
 	}
 	tree->base = NULL;
 	return (0 == tree->size);

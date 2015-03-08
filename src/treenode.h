@@ -22,6 +22,7 @@ typedef struct {
     clean_fn clean;
     print_fn print;
     int size;
+    int total_num;
 } TreeBase;
 
 typedef struct NodeList {
