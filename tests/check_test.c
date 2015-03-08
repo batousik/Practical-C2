@@ -38,6 +38,12 @@ void teardown_x(void){
     }
 }
 
+START_TEST(test_CHECK) {
+        ck_assert_int_eq(true, 1);
+        ck_assert_int_eq(false, 0);
+        ck_assert_int_eq(5, 5);
+} END_TEST
+
 //START_TEST(test_COMP_INTS) {
 //        int a,b,c;
 //        a = b = c = -234;
@@ -84,11 +90,6 @@ void teardown_x(void){
 //        }
 //    } END_TEST
 //
-//START_TEST(test_CHECK) {
-//        ck_assert_int_eq(true, 1);
-//        ck_assert_int_eq(false, 0);
-//        ck_assert_int_eq(5, 5);
-//} END_TEST
 //
 //START_TEST(test_INSERT) {
 //        int *a, *b;
