@@ -27,6 +27,7 @@ void teardown(void){
     ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
     ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     free(ptr_tree_base_int_1);
+    free(int_arr_ptr);
 }
 
 START_TEST(test_CHECK) {
