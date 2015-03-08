@@ -3,8 +3,8 @@
 #include "treenode.h"
 
 int main(){
-	testa();
-	testx();
+	//testa();
+	//testx();
 	testfile();
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
@@ -86,10 +86,11 @@ int main(){
 }
 
 void testfile(){
-	printf("_____________TESTSING FILE______\n");
+	printf("______TESTSING FILE______\n");
 	fflush(stdout);
 
-	char fname[100] = "../resource/tiny.txt";
+	//char fname[100] = "C:\\Users\\btsyrenov\\ClionProjects\\Practical-C2\\resource\\resource\\tiny.txt";
+	char fname[100] ="C:\\hm.txt";
 	char fmode[3] = "r";
 	FILE *ifp = open_file(&fname, &fmode);
 	if (!ifp){

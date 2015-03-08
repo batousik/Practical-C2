@@ -1,5 +1,7 @@
 #ifndef FILEIOSTRING_H
 #define FILEIOSTRING_H
+#define _BSD_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
