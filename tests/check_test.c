@@ -280,7 +280,7 @@ START_TEST(test_TREE_QUERY) {
 
         printf("________________________________SOME DEBUG________________");
         for (int j = 0; j < 34; ++j) {
-            printf("[%d: %d]", j, *(int_arr_ptr +i));
+            printf("[%d: %d]", j, *(int_arr_ptr + j));
         }
         printTree(ptr_tree_base_int_1);
         printf("________________________________SOME DEBUG________________");
@@ -294,7 +294,7 @@ START_TEST(test_TREE_QUERY) {
         }
 
         for (int i = temp_arr_size; i < (temp_arr_size*2); ++i) {
-            ptr_tree_node = query(ptr_tree_base_int_1, (temp_arr_size + i));
+            ptr_tree_node = query(ptr_tree_base_int_1, (int_arr_ptr + i));
             if (ptr_tree_node)
                 ck_abort_msg("Value does not exist, query didn't return NULL\n");
             ptr_tree_node = NULL;
