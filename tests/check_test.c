@@ -35,6 +35,51 @@ void teardown(void){
     }
 }
 
+START_TEST(test_COMP_INTS) {
+        int a,b,c;
+        a = b = c = 123;
+        ck_assert_int_eq(comp_ints(&a,&b), 0);
+        ck_assert_int_eq(comp_ints(&a,&c), 0);
+        ck_assert_int_eq(comp_ints(&c,&b), 0);
+        b = 234;
+        c = 345;
+        ck_assert_int_eq(comp_ints(&a,&b), -1);
+        ck_assert_int_eq(comp_ints(&a,&c), -1);
+        ck_assert_int_eq(comp_ints(&c,&b), 1);
+        ck_assert_int_eq(comp_ints(&b,&a), 1);
+        ck_assert_int_eq(comp_ints(&c,&a), 1);
+        ck_assert_int_eq(comp_ints(&b,&c), -1);
+        ck_assert_int_eq(comp_ints(&a,&a), 0);
+        ck_assert_int_eq(comp_ints(&b,&b), 0);
+        ck_assert_int_eq(comp_ints(&c,&c), 0);
+    } END_TEST
+
+START_TEST(test_CLEAN_INTS) {
+        int *a = malloc(sizeof(int));
+        // check if memory was allocated
+        if(a) {
+            *a = 234;
+            ck_assert_int_eq(*a, 234);
+            clean_ints(a);
+            if(a) {
+                ck_abort_msg("FAILED freeing pointer\n");
+            }
+        }
+    } END_TEST
+
+START_TEST(test_PRINT_INTS) {
+        int *a = malloc(sizeof(int));
+        // check if memory was allocated
+        if(a) {
+            *a = 234;
+            ck_assert_int_eq(*a, 234);
+            printf("!!!Next line has to be:\"234\"\n");
+            fflush(stdout);
+            print_ints(a);
+            clean_ints(a);
+        }
+    } END_TEST
+
 START_TEST(test_CHECK) {
         ck_assert_int_eq(true, 1);
         ck_assert_int_eq(false, 0);
@@ -76,38 +121,6 @@ START_TEST(test_BST_AND_INSERT_BST) {
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
-START_TEST(test_COMP_INTS) {
-        int a,b,c;
-        a = b = c = 123;
-        ck_assert_int_eq(comp_ints(&a,&b), 0);
-        ck_assert_int_eq(comp_ints(&a,&c), 0);
-        ck_assert_int_eq(comp_ints(&c,&b), 0);
-        b = 234;
-        c = 345;
-        ck_assert_int_eq(comp_ints(&a,&b), -1);
-        ck_assert_int_eq(comp_ints(&a,&c), -1);
-        ck_assert_int_eq(comp_ints(&c,&b), 1);
-        ck_assert_int_eq(comp_ints(&b,&a), 1);
-        ck_assert_int_eq(comp_ints(&c,&a), 1);
-        ck_assert_int_eq(comp_ints(&b,&c), -1);
-        ck_assert_int_eq(comp_ints(&a,&a), 0);
-        ck_assert_int_eq(comp_ints(&b,&b), 0);
-        ck_assert_int_eq(comp_ints(&c,&c), 0);
-    } END_TEST
-
-START_TEST(test_CLEAN_INTS) {
-        int *a = malloc(sizeof(int));
-        // check if memory was allocated
-        if(a) {
-            *a = 234;
-            ck_assert_int_eq(*a, 234);
-            clean_ints(a);
-            if(a) {
-                ck_abort_msg("FAILED freeing pointer\n");
-            }
-        }
-    } END_TEST
-
 START_TEST(test_NODE_DUBLICATES) {
         int *a, *b;
         a = malloc(sizeof(int));
@@ -136,19 +149,32 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
             memcpy(ptr, (int_arr_ptr + i), sizeof(int));
             insert(ptr_tree_base_int_1, ptr);
         }
+        // should print tree
         ck_assert_int_eq(printTree(ptr_tree_base_int_1), true);
         printf("_____________________\n");
         fflush(stdout);
 
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        // should print cannot free empty tree
+        printf("!!!Next line has to be:\"cannot free empty tree\"\n");
+        fflush(stdout);
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        // should print cannot print empty tree
+        printf("!!!Next line has to be:\"cannot print empty tree\"\n");
+        fflush(stdout);
         ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
         printf("_____________________\n");
         fflush(stdout);
 
         ptr_tree_base_int_1 = NULL;
         free(ptr_tree_base_int_1);
+        // should print cannot free empty tree base
+        printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
+        fflush(stdout);
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        // should print cannot print empty tree base
+        printf("!!!Next line has to be:\"cannot print empty tree base\"\n");
+        fflush(stdout);
         ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
         printf("_____________________\n");
         fflush(stdout);
@@ -173,14 +199,14 @@ Suite *tree_program_suite(void) {
     tc_core = tcase_create("Core");
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
+    tcase_add_test(tc_core, test_COMP_INTS);
+    tcase_add_test(tc_core, test_CLEAN_INTS);
+    tcase_add_test(tc_core, test_PRINT_INTS);
     tcase_add_test(tc_core, test_CHECK);
     tcase_add_test(tc_core, test_INSERT);
 	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
-    tcase_add_test(tc_core, test_COMP_INTS);
-    tcase_add_test(tc_core, test_CLEAN_INTS);
     tcase_add_test(tc_core, test_NODE_DUBLICATES);
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
-	// tcase_add_test(tc_core, test_size5);
 	// tcase_add_test(tc_core, test_any_ms_size);
 	// tcase_add_test(tc_core, test_solve_the_ms_problem);
 	// tcase_add_test(tc_core, test_swap_in_directed);
