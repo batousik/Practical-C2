@@ -3,6 +3,11 @@
 
 int main(){
 	int *a = calloc(1,(sizeof(int)));
+	if (a){
+		printf("allocated success\n");
+		fflush(stdout);
+	}
+
 	*a = 6969;
 	free(a);
 	a = NULL;

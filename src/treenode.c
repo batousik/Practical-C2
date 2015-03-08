@@ -56,6 +56,43 @@ TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 	return temp;
 }
 
+TreeNode* query(TreeBase* tree, void* value){
+	// catch NULL data
+	if (!tree || !value || !(tree->base)) {
+		printf("QUERY: Cannot search null data or use null tree-base or null tree\n");
+		fflush(stdout);
+		return NULL;
+	}
+	TreeNode *current_node = tree->base;
+	while(true){
+		int res = tree->comp(value, current_node->value);
+		switch (res){
+			case -1:
+				if (current_node->left) {
+					current_node = current_node->left;
+				} else {
+					return NULL;
+				}
+				break;
+			case 0:
+				return current_node;
+			case 1:
+				if (current_node->right){
+					current_node = current_node->right;
+				} else {
+					return NULL;
+				}
+				break;
+			default:
+				printf("Insert procedure logic fail\n");
+				fflush(stdout);
+				return false;
+		}
+	}
+	// unreachable code
+	return false;
+}
+
 bool insert(TreeBase* tree, void* data){
 	// catch NULL data
 	if (!tree || !data) {

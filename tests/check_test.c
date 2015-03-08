@@ -39,7 +39,7 @@ void teardown(void){
 
 START_TEST(test_COMP_INTS) {
         int a,b,c;
-        a = b = c = 123;
+        a = b = c = -234;
         ck_assert_int_eq(comp_ints(&a,&b), 0);
         ck_assert_int_eq(comp_ints(&a,&c), 0);
         ck_assert_int_eq(comp_ints(&c,&b), 0);
@@ -120,7 +120,7 @@ START_TEST(test_BST_AND_INSERT_BST) {
             memcpy(ptr, (int_arr_ptr + i), sizeof(int));
             insert(ptr_tree_base_int_1, ptr);
         }
-        bool isValid = printTree(ptr_tree_base_int_1);
+        isValid = printTree(ptr_tree_base_int_1);
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
@@ -135,7 +135,7 @@ START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
         ck_assert_int_eq(ptr_tree_base_int_1->total_num, 0);
 
-        bool isValid = insert(ptr_tree_base_int_1, a);
+        isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
         ck_assert_int_eq(ptr_tree_base_int_1->total_num, 1);
@@ -158,7 +158,6 @@ START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
     } END_TEST
 
 START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
-        bool isValid;
         printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
         fflush(stdout);
 
@@ -223,6 +222,122 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         fflush(stdout);
     } END_TEST
 
+START_TEST(test_TREE_QUERY) {
+        int *a;
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 34;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 23;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 74;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 35;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 25;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 33;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 1;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 12;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        a = malloc(sizeof(int));
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 11;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+        a = malloc(sizeof(int));
+
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 9999;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+        a = malloc(sizeof(int));
+
+        if (!a)
+            ck_abort_msg("FAILED memory allocation\n");
+        *a = 9998;
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+
+        TreeNode ptrTNode;
+
+        ptr_tree_node = query(ptr_tree_base_int_1, 9999);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 9998);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 12);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 11);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 1);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 33);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 25);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 35);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 74);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 23);
+        ck_assert_int_eq(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 34);
+        ck_assert_int_eq(ptr_tree_node, true);
+
+        ptr_tree_node = query(ptr_tree_base_int_1, -231);
+        ck_assert_int_ne(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 4);
+        ck_assert_int_ne(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 8888);
+        ck_assert_int_ne(ptr_tree_node, true);
+        ptr_tree_node = query(ptr_tree_base_int_1, 36);
+        ck_assert_int_ne(ptr_tree_node, true);
+    } END_TEST
+
+
 Suite *tree_program_suite(void) {
     Suite *s;
     TCase *tc_core;
@@ -241,7 +356,7 @@ Suite *tree_program_suite(void) {
 	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
     tcase_add_test(tc_core, test_NODE_DUBLICATES);
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
-	// tcase_add_test(tc_core, test_any_ms_size);
+	tcase_add_test(tc_core, test_TREE_QUERY);
 	// tcase_add_test(tc_core, test_solve_the_ms_problem);
 	// tcase_add_test(tc_core, test_swap_in_directed);
 	// tcase_add_test(tc_core, test_update_in_direction);

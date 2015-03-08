@@ -50,6 +50,7 @@ void printNode(TreeNode* node);
 // Free all memory from a tree (using the 'clean' function on each 'value')
 bool freeTree(TreeBase* tree);
 
+// Stack methods
 void push(StackNode **top_ref, TreeNode *t);
 TreeNode *pop(StackNode **top_ref);
 #endif
