@@ -7,7 +7,6 @@ TreeBase tree_base_int_1, *ptr_tree_base_int_1;
 TreeNode *ptr_tree_node;
 int *int_arr_ptr;
 int arr_size = 25;
-int int_arr [25];
 bool isValid;
 
 void setup(void) {
@@ -167,6 +166,8 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         int *ptr;
         for (int i = 0; i < arr_size; i++) {
             ptr = malloc(sizeof(int));
+            if (!ptr)
+                ck_abort_msg("FAILED memory allocation\n");
             *ptr = *(int_arr_ptr + i);
             isValid = insert(ptr_tree_base_int_1, ptr);
             ck_assert_int_eq(isValid, true);
