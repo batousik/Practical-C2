@@ -163,13 +163,13 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
         fflush(stdout);
 
-        int *ptr;
+        int *ptr_helper;
         for (int i = 0; i < arr_size; i++) {
-            ptr = malloc(sizeof(int));
-            if (!ptr)
+            ptr_helper = malloc(sizeof(int));
+            if (!ptr_helper)
                 ck_abort_msg("FAILED memory allocation\n");
-            *ptr = *(int_arr_ptr + i);
-            isValid = insert(ptr_tree_base_int_1, ptr);
+            *ptr_helper = *(int_arr_ptr + i);
+            isValid = insert(ptr_tree_base_int_1, ptr_helper);
             ck_assert_int_eq(isValid, true);
         }
 //        // should print tree
