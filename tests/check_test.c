@@ -281,7 +281,7 @@ START_TEST(test_TREE_QUERY) {
             ptr_tree_node = NULL;
         }
         if(b_arr){
-            frree(b_arr);
+            free(b_arr);
         }
     } END_TEST
 
