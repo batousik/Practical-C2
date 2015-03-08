@@ -17,28 +17,32 @@ void clean_ints(void *p){
 }
 
 void print_ints(void *p){
-	printf("%d\n", *(int*)p);
+	printf("%c\n", *(char*)p);
 	fflush(stdout);
 }
 
 // returns -1 if p1<p2, 0 if p1==p2, 1 if p1>p2,
 int comp_strs (void* p1, void* p2) {
-	int res = (*(int*)p1 - *(int*)p2);
+//	A value greater than zero indicates that thefirst character
+//	that does not match has a greater value in
+//	the first string than in the second,
+//	and a value less than zero indicates the opposite.
+	int res = strcmp((char*)p1, (char*)p2);
 	return (res<0)?-1:(res>0)?1:0;
 }
 
 void clean_strs(void *p){
 	if (!p){
-		printf("Clean int ptr that is NULL !!\n");
+		printf("Clean str ptr that is NULL !!\n");
 		fflush(stdout);
 		return;
 	}
-	free((int*)p);
+	free((char*)p);
 	p = NULL;
 }
 
 void print_strs(void *p){
-	printf("%d\n", *(int*)p);
+	printf("%s\n", (char*)p);
 	fflush(stdout);
 }
 

@@ -7,6 +7,8 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
 // method to wrap open file command
 FILE *open_file(char *f_rel_name, char *mode);
@@ -14,4 +16,5 @@ FILE *open_file(char *f_rel_name, char *mode);
 bool close_file(FILE *fp);
 // method to write to file
 bool write_file(FILE *fp);
+char *getString(FILE* fp, int size);
 #endif

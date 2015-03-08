@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef int(*comp_fn)(void*, void*);
 typedef void(*clean_fn)(void*);
@@ -34,6 +35,10 @@ int comp_ints (void* p1, void* p2);
 void clean_ints(void* p);
 void print_ints(void *p);
 
+int comp_strs (void* p1, void* p2);
+void clean_strs(void* p);
+void print_strs(void *p);
+
 // Construct a new tree (which takes a comparison, print and clean method)
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p);
 TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right);
@@ -53,8 +58,15 @@ bool freeTree(TreeBase* tree);
 // Stack methods
 void push(StackNode **top_ref, TreeNode *t);
 TreeNode *pop(StackNode **top_ref);
+
+int mainMenu();
+void runAnalys();
+
+
 void testx();
 void testa();
 void testy();
 void testfile();
+void testz(void* p);
+
 #endif

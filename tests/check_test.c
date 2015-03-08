@@ -77,6 +77,50 @@ START_TEST(test_CLEAN_INTS) {
     } END_TEST
 
 START_TEST(test_PRINT_INTS) {
+        char *a = malloc(6*sizeof(char));
+        // check if memory was allocated
+        if(a) {
+            *a = "abcde\0";
+            printf("!!!Next line has to be:\"abcde\"\n");
+            fflush(stdout);
+            print_strs(a);
+            clean_strs(a);
+        }
+    } END_TEST
+
+START_TEST(test_COMP_STRS) {
+        char a,b,c;
+        a = b = c = "abyrvalg\0";
+        ck_assert_int_eq(comp_strs(&a,&b), 0);
+        ck_assert_int_eq(comp_strs(&a,&c), 0);
+        ck_assert_int_eq(comp_strs(&c,&b), 0);
+        b = "masdf\0";
+        c = "z\0";
+        ck_assert_int_eq(comp_strs(&a,&b), -1);
+        ck_assert_int_eq(comp_strs(&a,&c), -1);
+        ck_assert_int_eq(comp_strs(&c,&b), 1);
+        ck_assert_int_eq(comp_strs(&b,&a), 1);
+        ck_assert_int_eq(comp_strs(&c,&a), 1);
+        ck_assert_int_eq(comp_strs(&b,&c), -1);
+        ck_assert_int_eq(comp_strs(&a,&a), 0);
+        ck_assert_int_eq(comp_strs(&b,&b), 0);
+        ck_assert_int_eq(comp_strs(&c,&c), 0);
+    } END_TEST
+
+START_TEST(test_CLEAN_STRS) {
+        char *a = malloc(4*sizeof(char));
+        // check if memory was allocated
+        if(a) {
+            *a = "asd\0";
+            clean_strs(a);
+            a = NULL;
+            if(a) {
+                ck_abort_msg("FAILED freeing pointer\n");
+            }
+        }
+    } END_TEST
+
+START_TEST(test_PRINT_STRS) {
         int *a = malloc(sizeof(int));
         // check if memory was allocated
         if(a) {
@@ -312,9 +356,9 @@ Suite *tree_program_suite(void) {
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
 	tcase_add_test(tc_core, test_TREE_QUERY);
 	tcase_add_test(tc_core, test_NODE_DUBLICATES_AND_COUNTERS);
-	// tcase_add_test(tc_core, test_swap_in_directed);
-	// tcase_add_test(tc_core, test_update_in_direction);
-	// tcase_add_test(tc_core, test_is_mobile);
+    tcase_add_test(tc_core, test_COMP_STRS);
+    tcase_add_test(tc_core, test_CLEAN_STRS);
+    tcase_add_test(tc_core, test_PRINT_STRS);
 	// tcase_add_test(tc_core, test_dms_on_extreme);
 	// tcase_add_test(tc_core, test_complete_4);
 
