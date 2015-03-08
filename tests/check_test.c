@@ -49,16 +49,16 @@ START_TEST(test_INSERT) {
         *b = 6;
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
         if (ptr_tree_base_int_1 == NULL)
-            ck_abort_msg("tree_base was NULL");
+            ck_abort_msg("tree_base was NULL\n");
         if (ptr_tree_base_int_1->base != NULL)
-            ck_abort_msg("tree_base->base was not NULL, expected NULL");
+            ck_abort_msg("tree_base->base was not NULL, expected NULL\n");
         bool isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
         if (ptr_tree_base_int_1->base == NULL)
-            ck_abort_msg("tree_base->base was NULL, expected assigned node");
+            ck_abort_msg("tree_base->base was NULL, expected assigned node\n");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
         if (ptr_tree_base_int_1->base->left != NULL && ptr_tree_base_int_1->base->right != NULL)
-            ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL");
+            ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL\n");
         isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, true);
         int z = *(int*)(ptr_tree_base_int_1->base->right->value);
@@ -97,7 +97,16 @@ START_TEST(test_COMP_INTS) {
     } END_TEST
 
 START_TEST(test_CLEAN_INTS) {
-        ck_assert_int_eq(5, 5);
+        int *a = malloc(sizeof(int));
+        // check if memory was allocated
+        if(a) {
+            *a = 234;
+            ck_assert_int_eq(*a, 234);
+            clean_ints(a);
+            if(a) {
+                ck_abort_msg("FAILED freeing pointer\n");
+            }
+        }
     } END_TEST
 
 START_TEST(test_NODE_DUBLICATES) {
@@ -118,7 +127,7 @@ START_TEST(test_NODE_DUBLICATES) {
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
-START_TEST(test_NODE_DUBLICATES) {
+START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
         fflush(stdout);
 
@@ -171,7 +180,7 @@ Suite *tree_program_suite(void) {
     tcase_add_test(tc_core, test_COMP_INTS);
     tcase_add_test(tc_core, test_CLEAN_INTS);
     tcase_add_test(tc_core, test_NODE_DUBLICATES);
-    tcase_add_test(tc_core, test_check_rows);
+    tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
 	// tcase_add_test(tc_core, test_size5);
 	// tcase_add_test(tc_core, test_any_ms_size);
 	// tcase_add_test(tc_core, test_solve_the_ms_problem);
