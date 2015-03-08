@@ -230,69 +230,69 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         fflush(stdout);
     } END_TEST
 
-//START_TEST(test_TREE_QUERY) {
-//        int temp_arr_size = 17;
-//        int *a_arr = malloc(temp_arr_size * sizeof(int));
-//        int *b_arr = malloc(temp_arr_size * sizeof(int));
-//
-//
-//        if (!a_arr || !b_arr)
-//            ck_abort_msg("FAILED memory allocation\n");
-//
-//        *(a_arr + 0) = 34;
-//        *(a_arr + 1) = 23;
-//        *(a_arr + 2) = 74;
-//        *(a_arr + 3) = 312;
-//        *(a_arr + 4) = 39;
-//        *(a_arr + 5) = 25;
-//        *(a_arr + 6) = 222;
-//        *(a_arr + 7) = 21;
-//        *(a_arr + 8) = 12;
-//        *(a_arr + 9) = 345;
-//        *(a_arr + 10) = 90;
-//        *(a_arr + 11) = 99;
-//        *(a_arr + 12) = 9454;
-//        *(a_arr + 13) = 9994;
-//        *(a_arr + 14) = -9998;
-//        *(a_arr + 15) = -234;
-//        *(a_arr + 16) = -4554;
-//
-//        for (int i = 0; i < temp_arr_size; ++i) {
-//            isValid = insert(ptr_tree_base_int_1, (a_arr+i));
-//            ck_assert_int_eq(isValid, true);
-//        }
-//
-//        memcpy(b_arr, a_arr, temp_arr_size*(sizeof(int)));
-//
-//        for (int i = 0; i < temp_arr_size; ++i) {
-//            *(b_arr+i)=*(b_arr+i)+1;
-//        }
-//
-//        for (int i = 0; i < temp_arr_size; ++i) {
-//            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
-//            ck_assert_int_eq(isValid, true);
-//        }
-//
-//        ptr_tree_node = NULL;
-//
-//        for (int i = 0; i < temp_arr_size; ++i) {
-//            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
-//            if (!ptr_tree_node)
-//                ck_abort_msg("Value exists, query returned NULL\n");
-//            ptr_tree_node = NULL;
-//        }
-//
-//        for (int i = 0; i < temp_arr_size; ++i) {
-//            ptr_tree_node = query(ptr_tree_base_int_1, (b_arr + i));
-//            if (ptr_tree_node)
-//                ck_abort_msg("Value does not exist, query didn't return NULL\n");
-//            ptr_tree_node = NULL;
-//        }
-//        if(b_arr){
-//            free(b_arr);
-//            b_arr = NULL;
-//        }
-//    } END_TEST
+START_TEST(test_TREE_QUERY) {
+        int temp_arr_size = 17;
+        int *a_arr = malloc(temp_arr_size * sizeof(int));
+        int *b_arr = malloc(temp_arr_size * sizeof(int));
+
+
+        if (!a_arr || !b_arr)
+            ck_abort_msg("FAILED memory allocation\n");
+
+        *(a_arr + 0) = 34;
+        *(a_arr + 1) = 23;
+        *(a_arr + 2) = 74;
+        *(a_arr + 3) = 312;
+        *(a_arr + 4) = 39;
+        *(a_arr + 5) = 25;
+        *(a_arr + 6) = 222;
+        *(a_arr + 7) = 21;
+        *(a_arr + 8) = 12;
+        *(a_arr + 9) = 345;
+        *(a_arr + 10) = 90;
+        *(a_arr + 11) = 99;
+        *(a_arr + 12) = 9454;
+        *(a_arr + 13) = 9994;
+        *(a_arr + 14) = -9998;
+        *(a_arr + 15) = -234;
+        *(a_arr + 16) = -4554;
+
+        for (int i = 0; i < temp_arr_size; ++i) {
+            isValid = insert(ptr_tree_base_int_1, (a_arr+i));
+            ck_assert_int_eq(isValid, true);
+        }
+
+        memcpy(b_arr, a_arr, temp_arr_size*(sizeof(int)));
+
+        for (int i = 0; i < temp_arr_size; ++i) {
+            *(b_arr+i)=*(a_arr+i)+1;
+        }
+
+        for (int i = 0; i < temp_arr_size; ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
+            ck_assert_int_eq(isValid, true);
+        }
+
+        ptr_tree_node = NULL;
+
+        for (int i = 0; i < temp_arr_size; ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
+            if (!ptr_tree_node)
+                ck_abort_msg("Value exists, query returned NULL\n");
+            ptr_tree_node = NULL;
+        }
+
+        for (int i = 0; i < temp_arr_size; ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (b_arr + i));
+            if (ptr_tree_node)
+                ck_abort_msg("Value does not exist, query didn't return NULL\n");
+            ptr_tree_node = NULL;
+        }
+        if(b_arr){
+            free(b_arr);
+            b_arr = NULL;
+        }
+    } END_TEST
 
 
 Suite *tree_program_suite(void) {
