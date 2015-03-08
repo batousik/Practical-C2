@@ -232,60 +232,67 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
 
 START_TEST(test_TREE_QUERY) {
         int temp_arr_size = 17;
-        int *a_arr = malloc(temp_arr_size * sizeof(int));
-        int *b_arr = malloc(temp_arr_size * sizeof(int));
 
+        *(int_arr_ptr + 0) = 34;
+        *(int_arr_ptr + 1) = 23;
+        *(int_arr_ptr + 2) = 74;
+        *(int_arr_ptr + 3) = 312;
+        *(int_arr_ptr + 4) = 39;
+        *(int_arr_ptr + 5) = 25;
+        *(int_arr_ptr + 6) = 222;
+        *(int_arr_ptr + 7) = 21;
+        *(int_arr_ptr + 8) = 12;
+        *(int_arr_ptr + 9) = 345;
+        *(int_arr_ptr + 10) = 90;
+        *(int_arr_ptr + 11) = 99;
+        *(int_arr_ptr + 12) = 9454;
+        *(int_arr_ptr + 13) = 9994;
+        *(int_arr_ptr + 14) = -9998;
+        *(int_arr_ptr + 15) = -234;
+        *(int_arr_ptr + 16) = -4554;
 
-        if (!a_arr || !b_arr)
-            ck_abort_msg("FAILED memory allocation\n");
-
-        *(a_arr + 0) = 34;
-        *(a_arr + 1) = 23;
-        *(a_arr + 2) = 74;
-        *(a_arr + 3) = 312;
-        *(a_arr + 4) = 39;
-        *(a_arr + 5) = 25;
-        *(a_arr + 6) = 222;
-        *(a_arr + 7) = 21;
-        *(a_arr + 8) = 12;
-        *(a_arr + 9) = 345;
-        *(a_arr + 10) = 90;
-        *(a_arr + 11) = 99;
-        *(a_arr + 12) = 9454;
-        *(a_arr + 13) = 9994;
-        *(a_arr + 14) = -9998;
-        *(a_arr + 15) = -234;
-        *(a_arr + 16) = -4554;
-
+        int *ptr_temp;
         for (int i = 0; i < temp_arr_size; ++i) {
-            isValid = insert(ptr_tree_base_int_1, (a_arr+i));
+            *ptr_temp = malloc(sizeof(int));
+            *ptr_temp = *(a_arr+i);
+            isValid = insert(ptr_tree_base_int_1, ptr_temp);
             ck_assert_int_eq(isValid, true);
         }
 
-        for (int i = 0; i < temp_arr_size; ++i) {
-            *(b_arr+i)=*(a_arr+i)+1;
-        }
-
-        for (int i = 0; i < temp_arr_size; ++i) {
-            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
-            ck_assert_int_eq(isValid, true);
-        }
+        *(int_arr_ptr + 17 + 0) = 34+1;
+        *(int_arr_ptr + 17 + 1) = 23+1;
+        *(int_arr_ptr + 17 + 2) = 74+1;
+        *(int_arr_ptr + 17 + 3) = 312+1;
+        *(int_arr_ptr + 17 + 4) = 39+1;
+        *(int_arr_ptr + 17 + 5) = 25+1;
+        *(int_arr_ptr + 17 + 6) = 222+1;
+        *(int_arr_ptr + 17 + 7) = 21+1;
+        *(int_arr_ptr + 17 + 8) = 12+1;
+        *(int_arr_ptr + 17 + 9) = 345+1;
+        *(int_arr_ptr + 17 + 10) = 90+1;
+        *(int_arr_ptr + 17 + 11) = 99+1;
+        *(int_arr_ptr + 17 + 12) = 9454+1;
+        *(int_arr_ptr + 17 + 13) = 9994+1;
+        *(int_arr_ptr + 17 + 14) = -9998+1;
+        *(int_arr_ptr + 17 + 15) = -234+1;
+        *(int_arr_ptr + 17 + 16) = -4554+1;
 
         ptr_tree_node = NULL;
 
         for (int i = 0; i < temp_arr_size; ++i) {
-            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
+            ptr_tree_node = query(ptr_tree_base_int_1, (int_arr_ptr + i));
             if (!ptr_tree_node)
                 ck_abort_msg("Value exists, query returned NULL\n");
             ptr_tree_node = NULL;
         }
 
-        for (int i = 0; i < temp_arr_size; ++i) {
-            ptr_tree_node = query(ptr_tree_base_int_1, (b_arr + i));
+        for (int i = temp_arr_size; i < (temp_arr_size*2); ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (temp_arr_size + i));
             if (ptr_tree_node)
                 ck_abort_msg("Value does not exist, query didn't return NULL\n");
             ptr_tree_node = NULL;
         }
+
         if(b_arr){
             free(b_arr);
             b_arr = NULL;

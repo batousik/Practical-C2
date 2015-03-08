@@ -5,7 +5,7 @@
 int main(){
 	//testa();
 	//testx();
-	testy();
+	//testy();
 	testfile();
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
@@ -101,6 +101,69 @@ void testfile(){
 //		return;
 //	}
 //	close_file(ifp);
+	bool isValid;
+	TreeBase *ptr_tree_base_int_1;
+	TreeNode *ptr_tree_node;
+	ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
+	int temp_arr_size = 17;
+	int *a_arr = malloc(temp_arr_size * sizeof(int));
+	int *b_arr = malloc(temp_arr_size * sizeof(int));
+
+
+
+
+	*(a_arr + 0) = 34;
+	*(a_arr + 1) = 23;
+	*(a_arr + 2) = 74;
+	*(a_arr + 3) = 312;
+	*(a_arr + 4) = 39;
+	*(a_arr + 5) = 25;
+	*(a_arr + 6) = 222;
+	*(a_arr + 7) = 21;
+	*(a_arr + 8) = 12;
+	*(a_arr + 9) = 345;
+	*(a_arr + 10) = 90;
+	*(a_arr + 11) = 99;
+	*(a_arr + 12) = 9454;
+	*(a_arr + 13) = 9994;
+	*(a_arr + 14) = -9998;
+	*(a_arr + 15) = -234;
+	*(a_arr + 16) = -4554;
+
+	for (int i = 0; i < temp_arr_size; ++i) {
+		isValid = insert(ptr_tree_base_int_1, (a_arr+i));
+		printf("%s", isValid ? "true\n" : "false\n");
+	}
+
+	for (int i = 0; i < temp_arr_size; ++i) {
+		*(b_arr+i)=*(a_arr+i)+1;
+	}
+
+	for (int i = 0; i < temp_arr_size; ++i) {
+		ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
+		if (ptr_tree_node){
+			printf("i exist\n");
+		} else {
+			printf("i dont exist\n");
+		}
+	}
+
+	for (int i = 0; i < temp_arr_size; ++i) {
+		ptr_tree_node = query(ptr_tree_base_int_1, (b_arr + i));
+		if (ptr_tree_node){
+			printf("i exist\n");
+		} else {
+			printf("i dont exist\n");
+		}
+	}
+
+	if(b_arr){
+		free(b_arr);
+		b_arr = NULL;
+	}
+
+	freeTree(ptr_tree_base_int_1);
+	printf("finito\n");
 }
 
 
@@ -132,7 +195,7 @@ void testa(){
 }
 
 void testy(){
-	//TreeBase *ptr_tree_base_int_1;
+	//
 	int *a, *b;
 	a = malloc(sizeof(int));
 	b = malloc(sizeof(int));
