@@ -24,12 +24,15 @@ void setup(void) {
 }
 
 void teardown(void){
-    ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
-    ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
-    free(ptr_tree_base_int_1);
-    ptr_tree_base_int_1 = NULL;
-    free(int_arr_ptr);
-    int_arr_ptr = NULL;
+    if (ptr_tree_base_int_1){
+        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        free(ptr_tree_base_int_1);
+        ptr_tree_base_int_1 = NULL;
+    }
+    if(int_arr_ptr){
+        free(int_arr_ptr);
+        int_arr_ptr = NULL;
+    }
 }
 
 START_TEST(test_CHECK) {
@@ -115,6 +118,42 @@ START_TEST(test_NODE_DUBLICATES) {
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
+START_TEST(test_NODE_DUBLICATES) {
+        printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
+        fflush(stdout);
+
+        int *ptr;
+        for (int i = 0; i < arr_size; i++) {
+            ptr = malloc(sizeof(int));
+            memcpy(ptr, (int_arr_ptr + i), sizeof(int));
+            insert(ptr_tree_base_int_1, ptr);
+        }
+        ck_assert_int_eq(printTree(ptr_tree_base_int_1), true);
+        printf("_____________________\n");
+        fflush(stdout);
+
+        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
+        printf("_____________________\n");
+        fflush(stdout);
+
+        ptr_tree_base_int_1 = NULL;
+        free(ptr_tree_base_int_1);
+        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
+        printf("_____________________\n");
+        fflush(stdout);
+
+        free(int_arr_ptr);
+        int_arr_ptr = NULL;
+        printf("freeing the array...\n");
+        fflush(stdout);
+        printf("________END_____________\n");
+        fflush(stdout);
+
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
+    } END_TEST
 
 Suite *tree_program_suite(void) {
     Suite *s;
@@ -132,7 +171,7 @@ Suite *tree_program_suite(void) {
     tcase_add_test(tc_core, test_COMP_INTS);
     tcase_add_test(tc_core, test_CLEAN_INTS);
     tcase_add_test(tc_core, test_NODE_DUBLICATES);
-	// tcase_add_test(tc_core, test_check_rows);
+    tcase_add_test(tc_core, test_check_rows);
 	// tcase_add_test(tc_core, test_size5);
 	// tcase_add_test(tc_core, test_any_ms_size);
 	// tcase_add_test(tc_core, test_solve_the_ms_problem);
