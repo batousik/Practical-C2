@@ -63,6 +63,7 @@ START_TEST(test_CLEAN_INTS) {
             *a = 234;
             ck_assert_int_eq(*a, 234);
             clean_ints(a);
+            a = NULL;
             if(a) {
                 ck_abort_msg("FAILED freeing pointer\n");
             }
@@ -124,6 +125,7 @@ START_TEST(test_BST_AND_INSERT_BST) {
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
+
 START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         int *a, *b, *c;
         a = malloc(sizeof(int));
@@ -132,6 +134,7 @@ START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         *a = 5;
         *b = 5;
         *c = 6;
+
         ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
         ck_assert_int_eq(ptr_tree_base_int_1->total_num, 0);
 
@@ -151,7 +154,7 @@ START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         ck_assert_int_eq(isValid, true);
 
         ck_assert_int_eq(ptr_tree_base_int_1->total_num, 3);
-        ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
+        ck_assert_int_eq(ptr_tree_base_int_1->size, 2);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
         ck_assert_int_eq(ptr_tree_base_int_1->base->right->cnt_dublicates, 1);
         // no need to free allocations, will be done in tear down
@@ -195,8 +198,8 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("_____________________\n");
         fflush(stdout);
         ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
-        ptr_tree_base_int_1 = NULL;
         free(ptr_tree_base_int_1);
+        ptr_tree_base_int_1 = NULL;
 
         // should print cannot free empty tree base
         printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
