@@ -20,6 +20,8 @@ void setup(void) {
     for (int i = 0; i < arr_size; ++i) {
         int r = rand() % 20000;
         *(int_arr_ptr+i) = r;
+        printf("setup::%d\n",*(int_arr_ptr + i));
+        fflush(stdout);
     }
 }
 
@@ -164,7 +166,7 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         fflush(stdout);
 
         int *ptr_helper;
-        for (int i = 0; i < arr_size; i++) {
+        for (int i = 0; i < arr_size; ++i) {
             ptr_helper = malloc(sizeof(int));
             if (!ptr_helper)
                 ck_abort_msg("FAILED memory allocation\n");
