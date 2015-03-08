@@ -253,8 +253,8 @@ START_TEST(test_TREE_QUERY) {
 
         int *ptr_temp;
         for (int i = 0; i < temp_arr_size; ++i) {
-            *ptr_temp = malloc(sizeof(int));
-            *ptr_temp = *(a_arr+i);
+            ptr_temp = malloc(sizeof(int));
+            *ptr_temp = *(int_arr_ptr+i);
             isValid = insert(ptr_tree_base_int_1, ptr_temp);
             ck_assert_int_eq(isValid, true);
         }
@@ -280,7 +280,7 @@ START_TEST(test_TREE_QUERY) {
 
         printf("________________________________SOME DEBUG________________");
         for (int j = 0; j < 34; ++j) {
-            printf("[%d: %d]", j,, *(int_arr_ptr +i));
+            printf("[%d: %d]", j, *(int_arr_ptr +i));
         }
         printTree(ptr_tree_base_int_1);
         printf("________________________________SOME DEBUG________________");
@@ -298,11 +298,6 @@ START_TEST(test_TREE_QUERY) {
             if (ptr_tree_node)
                 ck_abort_msg("Value does not exist, query didn't return NULL\n");
             ptr_tree_node = NULL;
-        }
-
-        if(b_arr){
-            free(b_arr);
-            b_arr = NULL;
         }
     } END_TEST
 
