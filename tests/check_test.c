@@ -311,7 +311,7 @@ Suite *tree_program_suite(void) {
     tcase_add_test(tc_core, test_INSERT);
 	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
-//	tcase_add_test(tc_core, test_TREE_QUERY);
+	tcase_add_test(tc_core, test_TREE_QUERY);
 	tcase_add_test(tc_core, test_NODE_DUBLICATES_AND_COUNTERS);
 	// tcase_add_test(tc_core, test_swap_in_directed);
 	// tcase_add_test(tc_core, test_update_in_direction);
