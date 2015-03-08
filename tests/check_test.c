@@ -9,7 +9,7 @@ int *int_arr_ptr;
 int arr_size = 25;
 bool isValid;
 
-void setup(void) {
+void setup_x(void) {
     int_arr_ptr = malloc(arr_size * (sizeof(int)));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
     if(!ptr_tree_base_int_1 || !int_arr_ptr) {
@@ -25,7 +25,7 @@ void setup(void) {
     }
 }
 
-void teardown(void){
+void teardown_x(void){
     if (ptr_tree_base_int_1){
         isValid = freeTree(ptr_tree_base_int_1);
         ck_assert_int_eq(isValid, true);
@@ -303,7 +303,7 @@ Suite *tree_program_suite(void) {
 
     /* Core test case */
     tc_core = tcase_create("Core");
-
+    tcase_add_checked_fixture(tc_core, setup_x, teardown_x);
   //  tcase_add_checked_fixture(tc_core, setup, teardown);
   //  tcase_add_test(tc_core, test_COMP_INTS);
    // tcase_add_test(tc_core, test_CLEAN_INTS);
