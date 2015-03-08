@@ -1,3 +1,4 @@
+#include <string.h>
 #include "treenode.h"
 
 int main(){
@@ -6,27 +7,37 @@ int main(){
 //	printf("%d", *ptr);
 //	ptr = NULL;
 //	free(ptr);
-	int *ptr = calloc(10,(sizeof(int)));
-	int *ptr2 = (ptr);
-	for (int i = 0; i < 10; ++i) {
-		int r = rand() % 20000;
-		*(ptr + i) = r;
-		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
-		fflush(stdout);
-	}
-	printf("\n");
-	printf("[v:%d, a:%p]", *(ptr2), ptr2);
-	printf("\n");
-	*ptr2=5;
-	printf("[v:%d, a:%p]", *(ptr2), ptr2);
-	printf("\n");
-	for (int i = 0; i < 10; ++i) {
-		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
-	}
-	printf("\n");
+	int *a = calloc(1,(sizeof(int)));
+	*a = 6969;
+	int *b = a;
+	a = calloc(1,(sizeof(int)));
+	*a = 1324;
+	printf("a: %d, b: %d\n",*a,*b);
+	free(a);
+	free(b);
 
-	free(ptr2);
-	free(ptr);
+
+
+
+//	for (int i = 0; i < 10; ++i) {
+//		int r = rand() % 20000;
+//		*(ptr + i) = r;
+//		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
+//		fflush(stdout);
+//	}
+//	printf("\n");
+//	printf("[v:%d, a:%p]", *(ptr2), ptr2);
+//	printf("\n");
+//	*ptr2=5;
+//	printf("[v:%d, a:%p]", *(ptr2), ptr2);
+//	printf("\n");
+//	for (int i = 0; i < 10; ++i) {
+//		printf("[i:%d, v:%d, a:%p]", i, *(ptr + i), ptr+i);
+//	}
+//	printf("\n");
+
+//	free(ptr2);
+//	free(ptr);
 //	printf("START\n");
 //	TreeBase  *ptr_tree_base_int_1;
 //	TreeNode  *ptr_tree_node;

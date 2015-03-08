@@ -10,7 +10,7 @@ int arr_size = 25;
 int int_arr [25];
 
 void setup(void) {
-    int_arr_ptr = calloc(arr_size * (sizeof(int)));
+    int_arr_ptr = calloc(arr_size, (sizeof(int)));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
     if(ptr_tree_base_int_1==NULL) {
         printf("Error allocating memory in test Setup\n");
@@ -37,9 +37,9 @@ START_TEST(test_CHECK) {
 } END_TEST
 
 START_TEST(test_INSERT) {
-        int *ptr_a, *ptr_b;
-        ptr_a = malloc(sizeof(int));
-        ptr_b = malloc(sizeof(int));
+        int *a, *b;
+        a = malloc(sizeof(int));
+        b = malloc(sizeof(int));
         *a = 5;
         *b = 6;
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
@@ -96,9 +96,9 @@ START_TEST(test_CLEAN_INTS) {
     } END_TEST
 
 START_TEST(test_NODE_DUBLICATES) {
-        int *ptr_a, *ptr_b;
-        ptr_a = malloc(sizeof(int));
-        ptr_b = malloc(sizeof(int));
+        int *a, *b;
+        a = malloc(sizeof(int));
+        b = malloc(sizeof(int));
         *a = 5;
         *b = 5;
         bool isValid = insert(ptr_tree_base_int_1, a);
