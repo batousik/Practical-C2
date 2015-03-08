@@ -302,39 +302,52 @@ START_TEST(test_TREE_QUERY) {
         isValid = insert(ptr_tree_base_int_1, a);
         ck_assert_int_eq(isValid, true);
 
-        TreeNode ptrTNode;
-
         ptr_tree_node = query(ptr_tree_base_int_1, 9999);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 9998);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 12);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 11);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 1);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 33);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 25);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 35);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 74);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 23);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 34);
-        ck_assert_int_eq(ptr_tree_node, true);
+        ck_assert(ptr_tree_node);
+        ptr_tree_node = NULL;
 
         ptr_tree_node = query(ptr_tree_base_int_1, -231);
-        ck_assert_int_ne(ptr_tree_node, true);
+        ck_assert(!ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 4);
-        ck_assert_int_ne(ptr_tree_node, true);
+        ck_assert(!ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 8888);
-        ck_assert_int_ne(ptr_tree_node, true);
+        ck_assert(!ptr_tree_node);
+        ptr_tree_node = NULL;
         ptr_tree_node = query(ptr_tree_base_int_1, 36);
-        ck_assert_int_ne(ptr_tree_node, true);
+        ck_assert(!ptr_tree_node);
+        ptr_tree_node = NULL;
     } END_TEST
 
 
@@ -354,10 +367,9 @@ Suite *tree_program_suite(void) {
     tcase_add_test(tc_core, test_CHECK);
     tcase_add_test(tc_core, test_INSERT);
 	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
-    tcase_add_test(tc_core, test_NODE_DUBLICATES);
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
 	tcase_add_test(tc_core, test_TREE_QUERY);
-	// tcase_add_test(tc_core, test_solve_the_ms_problem);
+	tcase_add_test(tc_core, test_NODE_DUBLICATES_AND_COUNTERS);
 	// tcase_add_test(tc_core, test_swap_in_directed);
 	// tcase_add_test(tc_core, test_update_in_direction);
 	// tcase_add_test(tc_core, test_is_mobile);
