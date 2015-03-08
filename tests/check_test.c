@@ -298,16 +298,16 @@ Suite *tree_program_suite(void) {
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_checked_fixture(tc_core, setup, teardown);
-    tcase_add_test(tc_core, test_COMP_INTS);
-    tcase_add_test(tc_core, test_CLEAN_INTS);
-    tcase_add_test(tc_core, test_PRINT_INTS);
-    tcase_add_test(tc_core, test_CHECK);
-    tcase_add_test(tc_core, test_INSERT);
-	tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
+  //  tcase_add_checked_fixture(tc_core, setup, teardown);
+  //  tcase_add_test(tc_core, test_COMP_INTS);
+   // tcase_add_test(tc_core, test_CLEAN_INTS);
+   // tcase_add_test(tc_core, test_PRINT_INTS);
+   // tcase_add_test(tc_core, test_CHECK);
+    //tcase_add_test(tc_core, test_INSERT);
+	//tcase_add_test(tc_core, test_BST_AND_INSERT_BST);
     tcase_add_test(tc_core, test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST);
-	tcase_add_test(tc_core, test_TREE_QUERY);
-	tcase_add_test(tc_core, test_NODE_DUBLICATES_AND_COUNTERS);
+	//tcase_add_test(tc_core, test_TREE_QUERY);
+	//tcase_add_test(tc_core, test_NODE_DUBLICATES_AND_COUNTERS);
 	// tcase_add_test(tc_core, test_swap_in_directed);
 	// tcase_add_test(tc_core, test_update_in_direction);
 	// tcase_add_test(tc_core, test_is_mobile);
