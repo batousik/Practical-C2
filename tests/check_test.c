@@ -277,14 +277,6 @@ START_TEST(test_TREE_QUERY) {
         *(int_arr_ptr + 17 + 15) = -234+1;
         *(int_arr_ptr + 17 + 16) = -4554+1;
 
-
-        printf("________________________________SOME DEBUG________________");
-        for (int j = 0; j < 34; ++j) {
-            printf("[%d: %d]", j, *(int_arr_ptr + j));
-        }
-        printTree(ptr_tree_base_int_1);
-        printf("________________________________SOME DEBUG________________");
-
         ptr_tree_node = NULL;
         for (int i = 0; i < temp_arr_size; ++i) {
             ptr_tree_node = query(ptr_tree_base_int_1, (int_arr_ptr + i));
