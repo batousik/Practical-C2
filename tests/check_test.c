@@ -223,118 +223,61 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
     } END_TEST
 
 START_TEST(test_TREE_QUERY) {
-        int *a;
+        int temp_arr_size = 17;
+        int *a_arr = malloc(temp_arr_size * sizeof(int));
+        int *b_arr = malloc(temp_arr_size * sizeof(int));
 
-        a = malloc(sizeof(int));
-        if (!a)
+
+        if (!a || !b)
             ck_abort_msg("FAILED memory allocation\n");
-        *a = 34;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 23;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
+        *(a_arr + 0) = 34;
+        *(a_arr + 1) = 23;
+        *(a_arr + 2) = 74;
+        *(a_arr + 3) = 312;
+        *(a_arr + 4) = 39;
+        *(a_arr + 5) = 25;
+        *(a_arr + 6) = 222;
+        *(a_arr + 7) = 21;
+        *(a_arr + 8) = 12;
+        *(a_arr + 9) = 345;
+        *(a_arr + 10) = 90;
+        *(a_arr + 11) = 99;
+        *(a_arr + 12) = 9454;
+        *(a_arr + 13) = 9994;
+        *(a_arr + 14) = -9998;
+        *(a_arr + 15) = -234;
+        *(a_arr + 16) = -4554;
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 74;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
+        for (int i = 0; i < a_arr_size; ++i) {
+            isValid = insert(ptr_tree_base_int_1, (a+i));
+            ck_assert_int_eq(isValid, true);
+        }
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 35;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
+        memcpy(b_arr, a_arr+i, a_arr_size*(sizeof(int)));
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 25;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
+        for (int i = 0; i < temp_arr_size; ++i) {
+            *(b_arr+i)=*(b_arr+i)+1;
+        }
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 33;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
+        for (int i = 0; i < temp_arr_size; ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
+            ck_assert_int_eq(isValid, true);
+            ck_assert(ptr_tree_node);
+            ptr_tree_node = NULL;
+        }
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 1;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
+        for (int i = 0; i < temp_arr_size; ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
+            ck_assert(ptr_tree_node);
+            ptr_tree_node = NULL;
+        }
 
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 12;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
-
-        a = malloc(sizeof(int));
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 11;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
-        a = malloc(sizeof(int));
-
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 9999;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
-        a = malloc(sizeof(int));
-
-        if (!a)
-            ck_abort_msg("FAILED memory allocation\n");
-        *a = 9998;
-        isValid = insert(ptr_tree_base_int_1, a);
-        ck_assert_int_eq(isValid, true);
-
-        ptr_tree_node = query(ptr_tree_base_int_1, 9999);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 9998);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 12);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 11);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 1);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 33);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 25);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 35);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 74);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 23);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 34);
-        ck_assert(ptr_tree_node);
-        ptr_tree_node = NULL;
+        for (int i = 0; i < temp_arr_size; ++i) {
+            ptr_tree_node = query(ptr_tree_base_int_1, (b_arr + i));
+            ck_assert(!ptr_tree_node);
+            ptr_tree_node = NULL;
+        }
 
         ptr_tree_node = query(ptr_tree_base_int_1, -231);
         ck_assert(!ptr_tree_node);
