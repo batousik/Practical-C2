@@ -12,7 +12,7 @@ int int_arr [25];
 void setup(void) {
     int_arr_ptr = calloc(arr_size, (sizeof(int)));
     ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
-    if(ptr_tree_base_int_1==NULL) {
+    if(!ptr_tree_base_int_1 || !int_arr_ptr) {
         printf("Error allocating memory in test Setup\n");
         fflush(stdout);
         assert(NULL);
@@ -27,7 +27,9 @@ void teardown(void){
     ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
     ck_assert_int_eq(ptr_tree_base_int_1->size, 0);
     free(ptr_tree_base_int_1);
+    ptr_tree_base_int_1 = NULL;
     free(int_arr_ptr);
+    int_arr_ptr = NULL;
 }
 
 START_TEST(test_CHECK) {
@@ -109,6 +111,7 @@ START_TEST(test_NODE_DUBLICATES) {
         ck_assert_int_eq(ptr_tree_base_int_1->size, 1);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
         *b=6;
+        isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, true);
     } END_TEST
 
@@ -157,5 +160,6 @@ int main(void) {
 	srunner_run_all(sr, CK_VERBOSE);
 	number_failed = srunner_ntests_failed(sr);
 	srunner_free(sr);
+    sr = NULL;
 	return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

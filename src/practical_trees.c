@@ -2,23 +2,58 @@
 #include "treenode.h"
 
 int main(){
-//	int *ptr = malloc(10*(sizeof(int)));
-//	*ptr = 0;
-//	printf("%d", *ptr);
-//	ptr = NULL;
-//	free(ptr);
 	int *a = calloc(1,(sizeof(int)));
+	*a = 6969;
+	free(a);
+	a = NULL;
+	if (a) {
+		bool g = (a == NULL);
+		printf("%s\n", g ? "a is null" : "a is not null");
+		fflush(stdout);
+	}
+
+	a = calloc(1,(sizeof(int)));
 	*a = 6969;
 	int *b = a;
 	a = calloc(1,(sizeof(int)));
 	*a = 1324;
 	printf("a: %d, b: %d\n",*a,*b);
+	fflush(stdout);
 	free(a);
 	free(b);
 
 
+	TreeBase *ptr_tree_base_int_1;
+	int *int_arr_ptr;
+	int arr_size = 25;
+	int_arr_ptr = calloc(arr_size, (sizeof(int)));
+	ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
+
+	for (int i = 0; i < arr_size; ++i) {
+		int r = rand() % 20000;
+		*(int_arr_ptr+i) = r;
+	}
 
 
+
+	int *ptr;
+	for (int i = 0; i < arr_size; i++) {
+		ptr = malloc(sizeof(int));
+		memcpy(ptr, (int_arr_ptr + i), sizeof(int));
+		insert(ptr_tree_base_int_1, ptr);
+	}
+	//printTree(ptr_tree_base_int_1);
+
+	freeTree(ptr_tree_base_int_1);
+
+	//printTree(ptr_tree_base_int_1);
+	free(ptr_tree_base_int_1);
+
+	//printTree(ptr_tree_base_int_1);
+	free(int_arr_ptr);
+
+	printf("horay\n");
+	fflush(stdout);
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
 //		*(ptr + i) = r;

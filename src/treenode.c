@@ -7,12 +7,13 @@ int comp_ints (void* p1, void* p2) {
 }
 
 void clean_ints(void *p){
-	if (p == NULL){
+	if (!p){
 		printf("Clean int ptr that is NULL !!\n");
 		fflush(stdout);
 		return;
 	}
 	free((int*)p);
+	p = NULL;
 }
 
 void print_ints(void *p){
@@ -22,7 +23,7 @@ void print_ints(void *p){
 
 TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
 	TreeBase *temp = (TreeBase*) malloc (sizeof (TreeBase));
-	if(temp==NULL) {
+	if(!temp) {
 		printf("Error allocating memory in creating new tree base\n");
 		fflush(stdout);
 		return NULL;
@@ -37,12 +38,12 @@ TreeBase* new_base(comp_fn co, clean_fn cl, print_fn p){
 
 TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 	TreeNode *temp = (TreeNode*) malloc (sizeof (TreeNode));
-	if(temp==NULL) {
+	if(!temp) {
 		printf("Error allocating memory in creating new tree node\n");
 		fflush(stdout);
 		return NULL;
 	}
-	if(value==NULL) {
+	if(!value) {
 		printf("Value is null in creating new tree node\n");
 		fflush(stdout);
 		return NULL;
@@ -56,7 +57,7 @@ TreeNode* new_node(void* value, TreeNode *p_left, TreeNode *p_right){
 
 bool insert(TreeBase* tree, void* data){
 	// catch NULL data
-	if (tree == NULL || data == NULL) {
+	if (!tree || !data) {
 		printf("INSERT: Cannot insert null data or into null tree\n");
 		fflush(stdout);
 		return false;
@@ -64,7 +65,7 @@ bool insert(TreeBase* tree, void* data){
 
 	TreeNode *current_node = tree->base;
 	// Empty tree condition
-	if (current_node == NULL){
+	if (!current_node){
 		tree->base = new_node(data, NULL, NULL);
 		tree->size = tree->size + 1;
 		return true;
@@ -73,7 +74,7 @@ bool insert(TreeBase* tree, void* data){
 		int res = tree->comp(data, current_node->value);
 		switch (res){
 			case -1:
-				if (current_node->left != NULL) {
+				if (current_node->left) {
 					current_node = current_node->left;
 				} else {
 					current_node->left = new_node(data, NULL, NULL);
@@ -86,7 +87,7 @@ bool insert(TreeBase* tree, void* data){
 				current_node->cnt_dublicates = current_node->cnt_dublicates + 1;
 				return false;
 			case 1:
-				if (current_node->right != NULL){
+				if (current_node->right){
 					current_node = current_node->right;
 				} else {
 					current_node->right = new_node(data, NULL, NULL);
@@ -107,12 +108,12 @@ bool insert(TreeBase* tree, void* data){
 // return true if tree was freed correctly
 // or if it already was free
 bool freeTree(TreeBase* tree){
-	if (tree == NULL) {
+	if (!tree) {
 		printf("FREETREE: Cant free empty tree base\n");
 		fflush(stdout);
 		return true;
 	}
-	if (tree->base == NULL) {
+	if (!(tree->base)) {
 		printf("FREETREE: Cant free empty tree\n");
 		fflush(stdout);
 		return true;
@@ -122,16 +123,17 @@ bool freeTree(TreeBase* tree){
 	StackNode *stack = NULL;
 	push(&stack, tree->base);
 	// breadth first traversal
-	while (stack != NULL) {
+	while (stack) {
 		current_node = pop(&stack);
 //		if (current_node == NULL)
 //			return (0 == tree->size);
-		if (current_node->left != NULL)
+		if (current_node->left)
 				push(&stack, current_node->left);
-		if (current_node->right != NULL)
+		if (current_node->right)
 				push(&stack, current_node->right);
 		tree->clean(current_node->value);
 		free(current_node);
+		current_node = NULL;
 		tree->size = tree->size - 1;
 	}
 	return (0 == tree->size);
@@ -142,25 +144,25 @@ bool freeTree(TreeBase* tree){
 bool printTree(TreeBase *tree){
 	void *previous;
 	int cnt_tasks = 0;
-	if (tree == NULL) {
+	if (!tree) {
 		printf("PRINT: Cannot print empty tree base\n");
 		fflush(stdout);
 		return false;
 	}
 	/* set current to root of binary tree */
 	TreeNode *current_node = tree->base;
-	if (tree->base == NULL) {
+	if (!(tree->base)) {
 		printf("PRINT: Cannot print empty tree\n");
 		fflush(stdout);
 		return false;
 	}
 	StackNode *stack = NULL;
 	while (true) {
-		if(current_node !=  NULL) {
+		if(current_node) {
 			push(&stack, current_node);
 			current_node = current_node->left;
 		} else {
-			if (stack != NULL) {
+			if (stack) {
 				current_node = pop(&stack);
 				if (cnt_tasks > 1) {
 					if (tree->comp(previous, current_node->value) != -1) {
