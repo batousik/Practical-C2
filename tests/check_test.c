@@ -250,7 +250,7 @@ START_TEST(test_TREE_QUERY) {
         *(a_arr + 16) = -4554;
 
         for (int i = 0; i < temp_arr_size; ++i) {
-            isValid = insert(ptr_tree_base_int_1, (a+i));
+            isValid = insert(ptr_tree_base_int_1, (a_arr+i));
             ck_assert_int_eq(isValid, true);
         }
 
@@ -269,14 +269,19 @@ START_TEST(test_TREE_QUERY) {
 
         for (int i = 0; i < temp_arr_size; ++i) {
             ptr_tree_node = query(ptr_tree_base_int_1, (a_arr + i));
-            ck_assert(ptr_tree_node);
+            if (!ptr_tree_node)
+                ck_abort_msg("Value exists, query returned NULL\n");
             ptr_tree_node = NULL;
         }
 
         for (int i = 0; i < temp_arr_size; ++i) {
             ptr_tree_node = query(ptr_tree_base_int_1, (b_arr + i));
-            ck_assert(!ptr_tree_node);
+            if (ptr_tree_node)
+                ck_abort_msg("Value does not exist, query didn't return NULL\n");
             ptr_tree_node = NULL;
+        }
+        if(b_arr){
+            frree(b_arr);
         }
     } END_TEST
 
