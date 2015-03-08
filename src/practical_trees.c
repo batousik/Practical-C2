@@ -92,8 +92,8 @@ void testfile(){
 	fflush(stdout);
 
 	//char fname[100] = "C:\\Users\\btsyrenov\\ClionProjects\\Practical-C2\\resource\\resource\\tiny.txt";
-	char fname[100] ="C:\\hm.txt";
-	char fmode[3] = "r";
+	char fname ="C:\\hm.txt";
+	char fmode = "r";
 	FILE *ifp = open_file(&fname, &fmode);
 	if (!ifp){
 		printf("Failed to open file\n");
@@ -132,7 +132,7 @@ void testa(){
 }
 
 void testy(){
-	TreeBase *ptr_tree_base_int_1;
+	//TreeBase *ptr_tree_base_int_1;
 	int *a, *b;
 	a = malloc(sizeof(int));
 	b = malloc(sizeof(int));
