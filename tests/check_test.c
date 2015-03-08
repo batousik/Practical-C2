@@ -72,7 +72,6 @@ START_TEST(test_BST_AND_INSERT_BST) {
             memcpy(ptr, (int_arr_ptr + i), sizeof(int));
             insert(ptr_tree_base_int_1, ptr);
         }
-        printTree(ptr_tree_base_int_1);
         bool isValid = printTree(ptr_tree_base_int_1);
         ck_assert_int_eq(isValid, true);
     } END_TEST
