@@ -158,7 +158,7 @@ START_TEST(test_NODE_DUBLICATES_AND_COUNTERS) {
         ck_assert_int_eq(ptr_tree_base_int_1->size, 2);
         ck_assert_int_eq(ptr_tree_base_int_1->base->cnt_dublicates, 2);
         ck_assert_int_eq(ptr_tree_base_int_1->base->right->cnt_dublicates, 1);
-        // no need to free allocations, will be done in tear down
+
     } END_TEST
 
 START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {

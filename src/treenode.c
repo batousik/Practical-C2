@@ -151,6 +151,9 @@ bool insert(TreeBase* tree, void* data){
 				// value exists!!!
 				tree->total_num = tree->total_num + 1;
 				current_node->cnt_dublicates = current_node->cnt_dublicates + 1;
+				// Pointer passed in will be lost if not freed
+				free(data);
+				data = NULL;
 				return false;
 			case 1:
 				if (current_node->right){
