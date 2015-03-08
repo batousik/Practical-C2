@@ -55,5 +55,6 @@ void push(StackNode **top_ref, TreeNode *t);
 TreeNode *pop(StackNode **top_ref);
 void testx();
 void testa();
+void testy();
 void testfile();
 #endif

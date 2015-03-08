@@ -202,6 +202,7 @@ bool freeTree(TreeBase* tree){
 		if (current_node->right)
 				push(&stack, current_node->right);
 		tree->clean(current_node->value);
+		current_node->value = NULL;
 		tree->total_num = tree->total_num - current_node->cnt_dublicates;
 		tree->size = tree->size - 1;
 		free(current_node);

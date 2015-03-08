@@ -5,7 +5,8 @@
 int main(){
 	//testa();
 	//testx();
-	testfile();
+	testy();
+	//testfile();
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
 //		*(ptr + i) = r;
@@ -86,7 +87,19 @@ int main(){
 }
 
 void testfile(){
-	printf("______TESTSING FILE______\n");
+
+	int *ptr;
+	ptr = NULL;
+	if (ptr)
+		printf("true NULL");
+	ptr = malloc(sizeof(int));
+	if (ptr)
+		printf("true2\n");
+	ptr = NULL;
+	if (ptr)
+		printf("true NULL2");
+
+	printf("______TESTING FILE______\n");
 	fflush(stdout);
 
 	//char fname[100] = "C:\\Users\\btsyrenov\\ClionProjects\\Practical-C2\\resource\\resource\\tiny.txt";
@@ -128,6 +141,19 @@ void testa(){
 	free(a);
 	free(b);
 }
+
+void testy(){
+	TreeBase *ptr_tree_base_int_1;
+	int *a, *b;
+	a = malloc(sizeof(int));
+	b = malloc(sizeof(int));
+	*a = 12;
+	b = a;
+	printf("a is :%d, b is :%d\n", *a, *b);
+	free(a);
+	a = NULL;
+}
+
 void testx(){
 
 	TreeBase *ptr_tree_base_int_1;

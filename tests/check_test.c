@@ -288,6 +288,7 @@ START_TEST(test_TREE_QUERY) {
         }
         if(b_arr){
             free(b_arr);
+            b_arr = NULL;
         }
     } END_TEST
 
