@@ -262,8 +262,6 @@ START_TEST(test_TREE_QUERY) {
             ck_assert_int_eq(isValid, true);
         }
 
-        memcpy(b_arr, a_arr, temp_arr_size*(sizeof(int)));
-
         for (int i = 0; i < temp_arr_size; ++i) {
             *(b_arr+i)=*(a_arr+i)+1;
         }
