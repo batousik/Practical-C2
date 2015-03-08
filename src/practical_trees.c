@@ -27,7 +27,7 @@ int main(){
 	free(a);
 	free(b);
 
-
+	testx();
 //	for (int i = 0; i < 10; ++i) {
 //		int r = rand() % 20000;
 //		*(ptr + i) = r;
@@ -105,4 +105,93 @@ int main(){
 
 
 	return 0;
+}
+
+
+void testx(){
+
+	TreeBase *ptr_tree_base_int_1;
+	int *int_arr_ptr;
+	int arr_size = 25;
+
+	int_arr_ptr = calloc(arr_size, (sizeof(int)));
+	ptr_tree_base_int_1 = new_base(comp_ints, clean_ints, print_ints);
+	if(!ptr_tree_base_int_1 || !int_arr_ptr) {
+		printf("Error allocating memory in test Setup\n");
+		fflush(stdout);
+		assert(NULL);
+	}
+	for (int i = 0; i < arr_size; ++i) {
+		int r = rand() % 20000;
+		*(int_arr_ptr+i) = r;
+	}
+
+	printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
+	fflush(stdout);
+
+	int *ptr;
+	for (int i = 0; i < arr_size; i++) {
+		ptr = malloc(sizeof(int));
+		memcpy(ptr, (int_arr_ptr + i), sizeof(int));
+		insert(ptr_tree_base_int_1, ptr);
+	}
+	// should print tree
+	printf("!!!Next lines has to be tree printed out\n");
+	fflush(stdout);
+	printTree(ptr_tree_base_int_1);
+	fflush(stdout);
+	printf("_____________________\n");
+	fflush(stdout);
+
+	// No output
+	freeTree(ptr_tree_base_int_1);
+	// should print cannot free empty tree
+	printf("!!!Next line has to be:\"cannot free empty tree\"\n");
+	fflush(stdout);
+	freeTree(ptr_tree_base_int_1);
+	fflush(stdout);
+
+	// should print cannot print empty tree
+	printf("!!!Next line has to be:\"cannot print empty tree\"\n");
+	fflush(stdout);
+	printTree(ptr_tree_base_int_1);
+	fflush(stdout);
+	printf("_____________________\n");
+	fflush(stdout);
+	//ptr_tree_base_int_1->size
+	free(ptr_tree_base_int_1);
+	ptr_tree_base_int_1 = NULL;
+
+	// should print cannot free empty tree base
+	printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
+	fflush(stdout);
+	freeTree(ptr_tree_base_int_1);
+	fflush(stdout);
+
+	// should print cannot print empty tree base
+	printf("!!!Next line has to be:\"cannot print empty tree base\"\n");
+	fflush(stdout);
+	printTree(ptr_tree_base_int_1);
+	fflush(stdout);
+	printf("_____________________\n");
+	fflush(stdout);
+
+	free(int_arr_ptr);
+	int_arr_ptr = NULL;
+	printf("freeing the array...\n");
+	fflush(stdout);
+
+
+	if (ptr_tree_base_int_1){
+		freeTree(ptr_tree_base_int_1);
+		free(ptr_tree_base_int_1);
+		ptr_tree_base_int_1 = NULL;
+	}
+	if(int_arr_ptr){
+		free(int_arr_ptr);
+		int_arr_ptr = NULL;
+	}
+
+	printf("________END_____________\n");
+	fflush(stdout);
 }

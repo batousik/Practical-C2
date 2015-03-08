@@ -53,4 +53,5 @@ bool freeTree(TreeBase* tree);
 // Stack methods
 void push(StackNode **top_ref, TreeNode *t);
 TreeNode *pop(StackNode **top_ref);
+void testx();
 #endif
