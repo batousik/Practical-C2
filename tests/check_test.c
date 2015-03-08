@@ -8,6 +8,7 @@ TreeNode *ptr_tree_node;
 int *int_arr_ptr;
 int arr_size = 25;
 int int_arr [25];
+bool isValid;
 
 void setup(void) {
     int_arr_ptr = calloc(arr_size, (sizeof(int)));
@@ -25,7 +26,8 @@ void setup(void) {
 
 void teardown(void){
     if (ptr_tree_base_int_1){
-        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
         free(ptr_tree_base_int_1);
         ptr_tree_base_int_1 = NULL;
     }
@@ -92,17 +94,18 @@ START_TEST(test_INSERT) {
         b = malloc(sizeof(int));
         *a = 5;
         *b = 6;
-        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
-        if (ptr_tree_base_int_1 == NULL)
-            ck_abort_msg("tree_base was NULL\n");
-        if (ptr_tree_base_int_1->base != NULL)
-            ck_abort_msg("tree_base->base was not NULL, expected NULL\n");
-        bool isValid = insert(ptr_tree_base_int_1, a);
+        isValid = freeTree(ptr_tree_base_int_1);
         ck_assert_int_eq(isValid, true);
-        if (ptr_tree_base_int_1->base == NULL)
+        if (!ptr_tree_base_int_1)
+            ck_abort_msg("tree_base was NULL\n");
+        if (ptr_tree_base_int_1->base)
+            ck_abort_msg("tree_base->base was not NULL, expected NULL\n");
+        isValid = insert(ptr_tree_base_int_1, a);
+        ck_assert_int_eq(isValid, true);
+        if (!(ptr_tree_base_int_1->base))
             ck_abort_msg("tree_base->base was NULL, expected assigned node\n");
         ck_assert_int_eq(1, ptr_tree_base_int_1->size);
-        if (ptr_tree_base_int_1->base->left != NULL && ptr_tree_base_int_1->base->right != NULL)
+        if (ptr_tree_base_int_1->base->left || ptr_tree_base_int_1->base->right)
             ck_abort_msg("tree_base->base->children wasnt NULL, expected NULL\n");
         isValid = insert(ptr_tree_base_int_1, b);
         ck_assert_int_eq(isValid, true);
@@ -140,6 +143,7 @@ START_TEST(test_NODE_DUBLICATES) {
     } END_TEST
 
 START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
+        bool isValid;
         printf("_________START_EMPTY_TREE/TREEBASE_PRINT/FREETREE_TEST__________\n");
         fflush(stdout);
 
@@ -152,23 +156,27 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         // should print tree
         printf("!!!Next lines has to be tree printed out\n");
         fflush(stdout);
-        ck_assert_int_eq(printTree(ptr_tree_base_int_1), true);
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
         fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
 
         // No output
-        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
         // should print cannot free empty tree
         printf("!!!Next line has to be:\"cannot free empty tree\"\n");
         fflush(stdout);
-        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
         fflush(stdout);
 
         // should print cannot print empty tree
         printf("!!!Next line has to be:\"cannot print empty tree\"\n");
         fflush(stdout);
-        ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, false);
         fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
@@ -179,13 +187,15 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         // should print cannot free empty tree base
         printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
         fflush(stdout);
-        ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        isValid = freeTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, true);
         fflush(stdout);
 
         // should print cannot print empty tree base
         printf("!!!Next line has to be:\"cannot print empty tree base\"\n");
         fflush(stdout);
-        ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
+        isValid = printTree(ptr_tree_base_int_1);
+        ck_assert_int_eq(isValid, false);
         fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
