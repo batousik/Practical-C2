@@ -153,6 +153,7 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("!!!Next lines has to be tree printed out\n");
         fflush(stdout);
         ck_assert_int_eq(printTree(ptr_tree_base_int_1), true);
+        fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
 
@@ -162,11 +163,13 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("!!!Next line has to be:\"cannot free empty tree\"\n");
         fflush(stdout);
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        fflush(stdout);
 
         // should print cannot print empty tree
         printf("!!!Next line has to be:\"cannot print empty tree\"\n");
         fflush(stdout);
         ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
+        fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
 
@@ -177,11 +180,13 @@ START_TEST(test_START_EMPTY_TREE_TREEBASE_PRINT_FREETREE_TEST) {
         printf("!!!Next line has to be:\"cannot free empty tree base\"\n");
         fflush(stdout);
         ck_assert_int_eq(freeTree(ptr_tree_base_int_1), true);
+        fflush(stdout);
 
         // should print cannot print empty tree base
         printf("!!!Next line has to be:\"cannot print empty tree base\"\n");
         fflush(stdout);
         ck_assert_int_eq(printTree(ptr_tree_base_int_1), false);
+        fflush(stdout);
         printf("_____________________\n");
         fflush(stdout);
 
