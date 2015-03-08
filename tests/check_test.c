@@ -254,7 +254,7 @@ START_TEST(test_TREE_QUERY) {
             ck_assert_int_eq(isValid, true);
         }
 
-        memcpy(b_arr, a_arr+i, a_arr_size*(sizeof(int)));
+        memcpy(b_arr, a_arr+i, temp_arr_size*(sizeof(int)));
 
         for (int i = 0; i < temp_arr_size; ++i) {
             *(b_arr+i)=*(b_arr+i)+1;
@@ -278,19 +278,6 @@ START_TEST(test_TREE_QUERY) {
             ck_assert(!ptr_tree_node);
             ptr_tree_node = NULL;
         }
-
-        ptr_tree_node = query(ptr_tree_base_int_1, -231);
-        ck_assert(!ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 4);
-        ck_assert(!ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 8888);
-        ck_assert(!ptr_tree_node);
-        ptr_tree_node = NULL;
-        ptr_tree_node = query(ptr_tree_base_int_1, 36);
-        ck_assert(!ptr_tree_node);
-        ptr_tree_node = NULL;
     } END_TEST
 
 
