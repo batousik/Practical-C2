@@ -76,7 +76,7 @@ int mainMenu(void) {
 }
 
 void automatic(){
-    char *f_name = "../resource/Pride.txt";
+    char *f_name = "../resource/pride.txt";
     tree_base = retrieveTreeFromFile(f_name, "r");
     printTree(tree_base);
 }
