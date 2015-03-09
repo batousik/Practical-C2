@@ -60,13 +60,6 @@ void push(StackNode **top_ref, TreeNode *t);
 TreeNode *pop(StackNode **top_ref);
 
 int mainMenu();
-void runAnalys();
 
-
-void testx();
-void testa();
-void testy();
-void testfile();
-void testz(void* p);
-
+void automatic();
 #endif
