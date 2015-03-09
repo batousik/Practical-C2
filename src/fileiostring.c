@@ -41,8 +41,6 @@ TreeBase *getParsedFile(FILE* fp, int size){
             }
         }
         *(toInsert+cnt) = '\0';
-
-
         insert(tree_base, toInsert);
         //printf ("The sentence entered is %u characters long.\n",(unsigned)strlen(word));
         //printf("%s\n",toInsert);
