@@ -17,7 +17,7 @@ void clean_ints(void *p){
 }
 
 void print_ints(void *p){
-	printf("%c\n", *(char*)p);
+	printf("%d\n", *(int*)p);
 	fflush(stdout);
 }
 
