@@ -16,7 +16,7 @@ void clean_ints(void *p){
 	p = NULL;
 }
 
-void print_ints(void *p){
+void print_ints(void *p, int *cnt){
 	printf("%d\n", *(int*)p);
 	fflush(stdout);
 }
@@ -42,8 +42,8 @@ void clean_strs(void *p){
 	a = NULL;
 }
 
-void print_strs(void *p){
-	printf("%s\n", (char*)p);
+void print_strs(void *p, int *cnt){
+	printf("(%s,%d)\n", (char*)p, *cnt);
 	fflush(stdout);
 }
 
@@ -250,7 +250,7 @@ bool printTree(TreeBase *tree){
 					}
 				}
 				previous = current_node->value;
-				tree->print(current_node->value);
+				tree->print(current_node->value, &current_node->cnt_dublicates);
 				cnt_tasks++;
 				current_node = current_node->right;
 			} else {
