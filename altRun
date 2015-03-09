@@ -1,0 +1,10 @@
+autoreconf --install
+make
+mkdir bin
+mv src/practical_trees bin/
+chmod -R 777 bin
+cd bin
+echo "____________________START_____________________"
+echo "Running program"
+./practical_trees
+echo "____________________END______________________"

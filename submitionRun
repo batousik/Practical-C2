@@ -1,5 +1,4 @@
-#!/bin/bash
-
+autoreconf --install
 ./configure
 make
 make check
@@ -20,6 +19,3 @@ echo "____________________NEXT_____________________"
 echo "Running program"
 ./practical_trees
 echo "____________________END______________________"
-cd ..
-chmod 777 altRun
-./altRun

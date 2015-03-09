@@ -7,7 +7,7 @@ char file_name[25];
 TreeBase* tree_base;
 
 int main() {
-    //while(mainMenu() != 3);
+    while(mainMenu() != 3);
     automatic();
     return 0;
 }

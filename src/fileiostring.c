@@ -8,13 +8,13 @@ FILE *open_file(char *f_rel_name, char *mode){
     FILE *temp_file;
     temp_file = fopen(f_rel_name, mode);
     if (temp_file == NULL) {
-//        int path_size = 200;
-//        char resolved_path[path_size];
-//        realpath(f_rel_name, resolved_path);
-//        printf("OPENFILE: error, check if file exists or not r/w protected at path:\n");
-//        fflush(stdout);
-//        printf("\t%s\n", resolved_path);
-//        fflush(stdout);
+        int path_size = 200;
+        char resolved_path[path_size];
+        realpath(f_rel_name, resolved_path);
+        printf("OPENFILE: error, check if file exists or not r/w protected at path:\n");
+        fflush(stdout);
+        printf("\t%s\n", resolved_path);
+        fflush(stdout);
         return NULL;
     }
     return temp_file;
