@@ -80,7 +80,7 @@ START_TEST(test_PRINT_INTS) {
         char *a = malloc(6*sizeof(char));
         // check if memory was allocated
         if(a) {
-            a = "abcde\0";
+            strcpy (a, "abcde\0");
             printf("!!!Next line has to be:\"abcde\"\n");
             fflush(stdout);
             print_strs(a);
@@ -90,12 +90,14 @@ START_TEST(test_PRINT_INTS) {
 
 START_TEST(test_COMP_STRS) {
         char *a,*b,*c;
-        a = b = c = "abyrvalg\0";
+        strcpy (a, "abyrvalg\0");
+        strcpy (b, "abyrvalg\0");
+        strcpy (c, "abyrvalg\0");
         ck_assert_int_eq(comp_strs(&a,&b), 0);
         ck_assert_int_eq(comp_strs(&a,&c), 0);
         ck_assert_int_eq(comp_strs(&c,&b), 0);
-        b = "masdf\0";
-        c = "z\0";
+        strcpy (b, "masdf\0");
+        strcpy (c, "z\0");
         ck_assert_int_eq(comp_strs(&a,&b), -1);
         ck_assert_int_eq(comp_strs(&a,&c), -1);
         ck_assert_int_eq(comp_strs(&c,&b), 1);

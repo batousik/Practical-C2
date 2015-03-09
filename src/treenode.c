@@ -37,8 +37,9 @@ void clean_strs(void *p){
 		fflush(stdout);
 		return;
 	}
-	free((char*)p);
-	p = NULL;
+	char *a = (char*)p;
+	free(a);
+	a = NULL;
 }
 
 void print_strs(void *p){

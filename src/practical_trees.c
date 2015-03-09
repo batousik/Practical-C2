@@ -6,6 +6,17 @@ FILE *ifp;
 char fileName[25];
 
 int main() {
+
+    char *a = malloc(4*sizeof(char));
+    // check if memory was allocated
+    if(a) {
+        strcpy (a, "asd");
+        clean_strs(a);
+        a = NULL;
+        if(a) {
+            getchar();
+        }
+    }
    // while(mainMenu() != 3);
 //    char *a = malloc(2*sizeof(char));
 //    *a = 'a';
