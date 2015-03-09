@@ -75,30 +75,37 @@ char *getString(FILE* fp, int size){
     char *fileStr = malloc(size*sizeof(char));
    // int totalSize = size;
     char temp;
+    char temp1;
     if(!fileStr)
         return NULL;
-//tolower()
+
     int cnt = 0;
     char *toInsert;
     while((temp = fgetc(fp)) != EOF){
         if (strchr(invalid_chrs, temp))
             continue;
         if (strchr(space_chrs, temp)){
+            if(strchr(space_chrs, temp1)){
+                cnt = 0;
+                temp1 = temp;
+                continue;
+            }
             printf("%.*s\n", cnt, fileStr);
             toInsert = malloc(cnt*sizeof(char) + 1);
             memcpy(toInsert, fileStr, cnt * sizeof(char));
             *(toInsert + cnt) = '\0';
             insert(tree_base, toInsert);
             cnt = 0;
+            temp1 = temp;
             continue;
         }
         temp = tolower((unsigned char)temp);
         *(fileStr + cnt) = temp;
-      //  if(cnt == totalSize)
-      //  *(fileStr + cnt) = temp;
+        temp1 = temp;
         cnt++;
     }
     printTree(tree_base);
+    freeTree(tree_base);
     return 0;
 
 //    if ( i >= buffer_size )
