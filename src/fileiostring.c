@@ -23,47 +23,73 @@ FILE *open_file(char *f_rel_name, char *mode){
 // parsing file to tree
 TreeBase *getParsedFile(FILE* fp, int size){
     TreeBase *tree_base = new_base(comp_strs, clean_strs, print_strs);
-    const char *invalid_chrs = "*-_.,()!\?\"";
-    const char *space_chrs = "\f\n\r\t\v ";
-    int totalSize = size;
-    char *fileStr = malloc(totalSize*sizeof(char));
-    char temp;
-    char temp1;
-    char *tempExtender;
-    if(!fileStr)
-        return NULL;
-    int cnt = 0;
+    char word[1000];
+    char c;
+    //char temp;
     char *toInsert;
-    while((temp = fgetc(fp)) != EOF){
-        if (strchr(invalid_chrs, temp))
-            continue;
-        if (strchr(space_chrs, temp)){
-            if(strchr(space_chrs, temp1)){
-                cnt = 0;
-                temp1 = temp;
-                continue;
-            }
-            toInsert = malloc((1+cnt)*sizeof(char));
-            memcpy(toInsert, fileStr, cnt * sizeof(char));
-            *(toInsert + cnt) = '\0';
-            insert(tree_base, toInsert);
-            cnt = 0;
-            temp1 = temp;
-            continue;
-        }
+    int size_str;
+    do {
+        c = fscanf(fp,"%s",word);
+        size_str = strlen(word) + 1;
+        toInsert = malloc((size_str*sizeof(char)));
 
-        if (cnt >= totalSize){
-            totalSize+=size;
-            tempExtender = realloc(fileStr, totalSize);
-            fileStr = tempExtender;
+        int cnt = 0;
+        for (int i = 0; i < size_str; ++i) {
+            if(!(ispunct((unsigned)word[i]))) {
+                *(toInsert+cnt) = tolower((unsigned)word[i]);
+                cnt++;
+            }
         }
-        temp = tolower((unsigned char)temp);
-        *(fileStr + cnt) = temp;
-        temp1 = temp;
-        cnt++;
-    }
+        *(toInsert+cnt) = '\0';
+
+
+        insert(tree_base, toInsert);
+        //printf ("The sentence entered is %u characters long.\n",(unsigned)strlen(word));
+        //printf("%s\n",toInsert);
+    } while (c != EOF);
+   //
+//    const char *space_chrs = "\f\n\r\t\v ";
+//    const char *extra ="'a";
+//    int totalSize = size;
+//    char *fileStr = malloc(totalSize*sizeof(char));
+//    char temp;
+//    char temp1;
+//    char *tempExtender;
+//    if(!fileStr)
+//        return NULL;
+//    int cnt = 0;
+//    char *toInsert;
+//    while((temp = fgetc(fp)) != EOF){
+//        if (!(strchr(space_chrs, temp)) || !(strchr(extra, temp)))
+//                continue;
+//        if (strchr(space_chrs, temp)){
+//            if(strchr(space_chrs, temp1)){
+//                cnt = 0;
+//                temp1 = temp;
+//                continue;
+//            }
+//            toInsert = malloc((1+cnt)*sizeof(char));
+//            memcpy(toInsert, fileStr, cnt * sizeof(char));
+//            *(toInsert + cnt) = '\0';
+//            insert(tree_base, toInsert);
+//            cnt = 0;
+//            temp1 = temp;
+//            continue;
+//        }
+//
+//        if (cnt >= totalSize){
+//            totalSize+=size;
+//            tempExtender = realloc(fileStr, totalSize);
+//            fileStr = tempExtender;
+//        }
+//        temp = tolower((unsigned char)temp);
+//        *(fileStr + cnt) = temp;
+//        temp1 = temp;
+//        cnt++;
+   // }
     return tree_base;
 }
+
 
 TreeBase *retrieveTreeFromFile(char *file_name, char *mode) {
     printf(">>>opening file: %s\n", file_name);
